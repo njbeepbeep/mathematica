@@ -1,0 +1,319 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10415,        309]
+NotebookOptionsPosition[      9939,        292]
+NotebookOutlinePosition[     10331,        308]
+CellTagsIndexPosition[     10288,        305]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Circle", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}], ",", 
+     RowBox[{"PointSize", "[", "Medium", "]"}], ",", 
+     RowBox[{"Point", "[", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "0"}], "}"}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<(1, 0)\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"1.1", ",", "0"}], "}"}]}], "]"}], ",", 
+     RowBox[{"Point", "[", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<(0, 1)\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.1", ",", "1.1"}], "}"}]}], "]"}], ",", 
+     RowBox[{"Point", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "0"}], "}"}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<(-1, 0)\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1.1"}], ",", "0"}], "}"}]}], "]"}], ",", 
+     RowBox[{"Point", "[", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"-", "1"}]}], "}"}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<(0, -1)\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.1", ",", 
+         RowBox[{"-", "1.1"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"Point", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], ",", 
+        RowBox[{"1", "/", "2"}]}], "}"}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<(\[Sqrt]3/2, 1/2)\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "0.1"}], ",", 
+         RowBox[{
+          RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<0\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"1.1", ",", "0"}], "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<90\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.1", ",", "1.1"}], "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<180\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1.1"}], ",", "0"}], "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<270\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"0.1", ",", 
+         RowBox[{"-", "1.1"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<30\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "0.1"}], ",", 
+         RowBox[{
+          RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<45\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sqrt", "[", "2", "]"}], "/", "2"}], "+", "0.1"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sqrt", "[", "2", "]"}], "/", "2"}], "+", "0.1"}]}], 
+        "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<60\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"1", "/", "2"}], "+", "0.1"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "0.1"}]}], 
+        "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<120\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "1"}], "/", "2"}], "-", "0.3"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "0.1"}]}], 
+        "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<135\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", "2", "]"}]}], "/", "2"}], "-", "0.4"}], ",", 
+         
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sqrt", "[", "2", "]"}], "/", "2"}], "+", "0.1"}]}], 
+        "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<150\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", "3", "]"}]}], "/", "2"}], "-", "0.5"}], ",", 
+         
+         RowBox[{
+          RowBox[{"1", "/", "2"}], "+", "0.1"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<210\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", "3", "]"}]}], "/", "2"}], "-", "0.5"}], ",", 
+         
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "1"}], "/", "2"}], "-", "0.3"}]}], "}"}]}], "]"}], 
+     ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<225\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", "2", "]"}]}], "/", "2"}], "-", "0.4"}], ",", 
+         
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", "2", "]"}]}], "/", "2"}], "-", "0.3"}]}], 
+        "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<240\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "1"}], "/", "2"}], "-", "0.3"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", "3", "]"}]}], "/", "2"}], "-", "0.5"}]}], 
+        "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<300\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"1", "/", "2"}], "+", "0.1"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", "3", "]"}]}], "/", "2"}], "-", "0.5"}]}], 
+        "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<315\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sqrt", "[", "2", "]"}], "/", "2"}], "+", "0.1"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Sqrt", "[", "2", "]"}]}], "/", "2"}], "-", "0.4"}]}], 
+        "}"}]}], "]"}], ",", 
+     RowBox[{"Text", "[", 
+      RowBox[{"\"\<330\[Degree]\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], "+", "0.1"}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "1"}], "/", "2"}], "-", "0.3"}]}], "}"}]}], "]"}]}], 
+    "}"}], ",", 
+   RowBox[{"Axes", "->", "True"}], ",", 
+   RowBox[{"AxesOrigin", "->", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+   RowBox[{"Ticks", "->", "None"}], ",", 
+   RowBox[{"PlotRange", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1.5"}], ",", "1.5"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1.5"}], ",", "1.5"}], "}"}]}], "}"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.9337318017572393`*^9, 3.933731802703257*^9}, {
+  3.93373183819593*^9, 
+  3.933731845033638*^9}},ExpressionUUID->"f901117b-74cb-43ba-9d6c-\
+9ad48aa31f5a"],
+
+Cell[BoxData[
+ GraphicsBox[{CircleBox[{0, 0}, 1], 
+   {PointSize[Medium], PointBox[{1, 0}], InsetBox["\<\"(1, 0)\"\>", {1.1, 0}],
+     PointBox[{0, 1}], InsetBox["\<\"(0, 1)\"\>", {0.1, 1.1}], 
+    PointBox[{-1, 0}], InsetBox["\<\"(-1, 0)\"\>", {-1.1, 0}], 
+    PointBox[{0, -1}], InsetBox["\<\"(0, -1)\"\>", {0.1, -1.1}], 
+    PointBox[NCache[{Rational[1, 2] 3^Rational[1, 2], Rational[1, 2]}, {
+      0.8660254037844386, 0.5}]], 
+    InsetBox["\<\"(\[Sqrt]3/2, 1/2)\"\>", {0.9660254037844386, 0.6}], 
+    InsetBox["\<\"0\[Degree]\"\>", {1.1, 0}], 
+    InsetBox["\<\"90\[Degree]\"\>", {0.1, 1.1}], 
+    InsetBox["\<\"180\[Degree]\"\>", {-1.1, 0}], 
+    InsetBox["\<\"270\[Degree]\"\>", {0.1, -1.1}], 
+    InsetBox["\<\"30\[Degree]\"\>", {0.9660254037844386, 0.6}], 
+    InsetBox["\<\"45\[Degree]\"\>", {0.8071067811865474, 0.8071067811865474}],
+     InsetBox["\<\"60\[Degree]\"\>", {0.6, 0.9660254037844386}], 
+    InsetBox["\<\"120\[Degree]\"\>", {-0.8, 0.9660254037844386}], 
+    InsetBox["\<\"135\[Degree]\"\>", \
+{-1.1071067811865474, 0.8071067811865474}], 
+    InsetBox["\<\"150\[Degree]\"\>", {-1.3660254037844386, 0.6}], 
+    InsetBox["\<\"210\[Degree]\"\>", {-1.3660254037844386, -0.8}], 
+    InsetBox["\<\"225\[Degree]\"\>", \
+{-1.1071067811865474, -1.0071067811865475}], 
+    InsetBox["\<\"240\[Degree]\"\>", {-0.8, -1.3660254037844386}], 
+    InsetBox["\<\"300\[Degree]\"\>", {0.6, -1.3660254037844386}], 
+    InsetBox["\<\"315\[Degree]\"\>", \
+{0.8071067811865474, -1.1071067811865474}], 
+    InsetBox["\<\"330\[Degree]\"\>", {0.9660254037844386, -0.8}]}},
+  Axes->True,
+  AxesOrigin->{0, 0},
+  ImageSize->{899.390625, Automatic},
+  PlotRange->{{-1.5, 1.5}, {-1.5, 1.5}},
+  Ticks->None]], "Output",
+ CellChangeTimes->{3.933731803443357*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"b95ca19c-5ff4-4368-8955-3f0b675243b2"]
+}, Open  ]]
+},
+WindowSize->{1678, 1148},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"1dd6aa4b-aefb-4570-8b00-285aed6adadd"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 7509, 231, 160, "Input",ExpressionUUID->"f901117b-74cb-43ba-9d6c-9ad48aa31f5a"],
+Cell[8092, 255, 1831, 34, 916, "Output",ExpressionUUID->"b95ca19c-5ff4-4368-8955-3f0b675243b2"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,3647 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    141790,       3637]
+NotebookOptionsPosition[    111423,       3303]
+NotebookOutlinePosition[    111816,       3319]
+CellTagsIndexPosition[    111773,       3316]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Initialize", " ", "parameters"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"m1", "=", "1"}], ";", 
+    RowBox[{"(*", 
+     RowBox[{"Mass", " ", "of", " ", "the", " ", "smaller", " ", "block"}], 
+     "*)"}], 
+    RowBox[{"m2", "=", 
+     RowBox[{"100", "^", "2"}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Mass", " ", "of", " ", "the", " ", "larger", " ", "block", " ", 
+      RowBox[{"(", 
+       RowBox[{
+       "adjust", " ", "for", " ", "more", " ", "digits", " ", "of", " ", 
+        "Pi"}], ")"}]}], "*)"}], 
+    RowBox[{"v1", "=", "0"}], ";", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Initial", " ", "velocity", " ", "of", " ", "the", " ", "smaller", " ", 
+      "block", " ", 
+      RowBox[{"(", 
+       RowBox[{"starting", " ", "at", " ", "rest"}], ")"}]}], "*)"}], 
+    RowBox[{"v2", "=", 
+     RowBox[{"-", "1"}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Initial", " ", "velocity", " ", "of", " ", "the", " ", "larger", " ", 
+      "block", " ", 
+      RowBox[{"(", 
+       RowBox[{
+       "moving", " ", "towards", " ", "the", " ", "smaller", " ", "block"}], 
+       ")"}]}], "*)"}], 
+    RowBox[{"collisionCount", "=", "0"}], ";", 
+    RowBox[{"(*", 
+     RowBox[{"Initialize", " ", "the", " ", "collision", " ", "counter"}], 
+     "*)"}], 
+    RowBox[{"(*", 
+     RowBox[{"Time", " ", "evolution", " ", "loop"}], "*)"}], 
+    RowBox[{"While", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"v2", "<", "0"}], "||", 
+       RowBox[{"v1", "<", "v2"}]}], ",", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Wall", " ", "collision", " ", "for", " ", "smaller", " ", "block"}], 
+       "*)"}], 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"v1", "<", "0"}], ",", 
+         RowBox[{
+          RowBox[{"v1", "=", 
+           RowBox[{"-", "v1"}]}], ";", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Reverse", " ", "direction", " ", "after", " ", "hitting", " ", 
+            "the", " ", "wall"}], "*)"}], 
+          RowBox[{"collisionCount", "++"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<Collision with wall: \>\"", ",", "collisionCount"}], 
+           "]"}], ";"}]}], 
+        RowBox[{"(*", 
+         RowBox[{"Debugging", " ", "output"}], "*)"}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Block", " ", "collision"}], "*)"}], 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"v1", ">", "v2"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+          "Update", " ", "velocities", " ", "after", " ", "elastic", " ", 
+           "collision"}], "*)"}], 
+         RowBox[{
+          RowBox[{"newV1", "=", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"m1", "-", "m2"}], ")"}], " ", "v1"}], "+", 
+              RowBox[{"2", " ", "m2", " ", "v2"}]}], ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"m1", "+", "m2"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"newV2", "=", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"m2", "-", "m1"}], ")"}], " ", "v2"}], "+", 
+              RowBox[{"2", " ", "m1", " ", "v1"}]}], ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"m1", "+", "m2"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{"Assign", " ", "new", " ", "velocities"}], "*)"}], 
+          RowBox[{"v1", "=", "newV1"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"v2", "=", "newV2"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{"Increment", " ", "collision", " ", "count"}], "*)"}], 
+          RowBox[{"collisionCount", "++"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{
+           "\"\<Collision between blocks: \>\"", ",", "collisionCount"}], 
+           "]"}], ";"}]}], 
+        RowBox[{"(*", 
+         RowBox[{"Debugging", " ", "output"}], "*)"}], "]"}], ";"}]}], "]"}], 
+    ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Output", " ", "the", " ", "final", " ", "collision", " ", "count"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Total number of collisions: \>\"", ",", "collisionCount"}], 
+     "]"}], ";"}]}]}]], "Input",
+ CellLabel->"In[34]:=",ExpressionUUID->"ae2a8194-02b7-4d35-9a22-4b18aa6d89fb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "1"}],
+  SequenceForm["Collision between blocks: ", 1],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287064849*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a5433973-0684-4598-a6a2-a83182ee3592"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "2"}],
+  SequenceForm["Collision with wall: ", 2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287066883*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"367e21e0-6eac-4994-b099-826ab696763e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "3"}],
+  SequenceForm["Collision between blocks: ", 3],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870683517`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c9980658-6a82-42d4-b4fb-ee4cfa34b086"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "4"}],
+  SequenceForm["Collision with wall: ", 4],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287069367*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"1d34ffe3-c11f-4836-984f-5b6b7cf2aa45"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "5"}],
+  SequenceForm["Collision between blocks: ", 5],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870703697`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f54b2f3b-c646-49a7-b9b1-61c5721afc49"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "6"}],
+  SequenceForm["Collision with wall: ", 6],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287071357*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"90223423-5097-45eb-ad8d-0db46181f5cc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "7"}],
+  SequenceForm["Collision between blocks: ", 7],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287072348*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4fd2d8a5-39d9-49af-9cbc-87b7f2245086"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "8"}],
+  SequenceForm["Collision with wall: ", 8],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287073337*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"87f0dcd1-1cb5-4c61-bc3b-742433bfdf78"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "9"}],
+  SequenceForm["Collision between blocks: ", 9],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287074315*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0f19bcd4-0e67-44d1-96da-199be298b585"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "10"}],
+  SequenceForm["Collision with wall: ", 10],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287075219*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8c7d5628-725f-4234-9299-076d1e85d5eb"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "11"}],
+  SequenceForm["Collision between blocks: ", 11],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287076123*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"1fb1f6fd-a1a7-4c0a-bf55-680a13268be0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "12"}],
+  SequenceForm["Collision with wall: ", 12],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287077031*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"aaf3c39d-f306-4973-9368-0f76be76c149"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "13"}],
+  SequenceForm["Collision between blocks: ", 13],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828707794*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b15def43-13c3-438d-9550-efa8fe037948"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "14"}],
+  SequenceForm["Collision with wall: ", 14],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870788727`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a2a8106f-ef15-49ec-b118-caf12ea67d15"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "15"}],
+  SequenceForm["Collision between blocks: ", 15],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287079782*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"90168de3-02bb-4dc1-a348-99429a67c8a3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "16"}],
+  SequenceForm["Collision with wall: ", 16],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287080689*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"18fb6857-ebb2-4451-a06c-3e63ff4093ba"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "17"}],
+  SequenceForm["Collision between blocks: ", 17],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870816708`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"27056876-f003-4d77-bb97-be4d9a7a45de"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "18"}],
+  SequenceForm["Collision with wall: ", 18],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287082552*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"9cc097f1-6d84-409c-a00a-9652c5a6e1f5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "19"}],
+  SequenceForm["Collision between blocks: ", 19],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870834007`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8ae70bb1-bcb4-4f3d-836d-8994d9b2561d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "20"}],
+  SequenceForm["Collision with wall: ", 20],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870842524`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"086435d0-f21f-49f4-838a-cfd9b739f088"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "21"}],
+  SequenceForm["Collision between blocks: ", 21],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870851097`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8fc0e9a5-247e-45e8-b9e8-c81ac39c84cc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "22"}],
+  SequenceForm["Collision with wall: ", 22],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870859632`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c2a28cf3-3fee-4d6f-baa5-28371465592b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "23"}],
+  SequenceForm["Collision between blocks: ", 23],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287086813*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"dc5c243a-7c30-41c9-b730-27d35c69425b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "24"}],
+  SequenceForm["Collision with wall: ", 24],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287087675*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"17f6ca7a-1434-4cf5-9b41-de3a2374ff0e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "25"}],
+  SequenceForm["Collision between blocks: ", 25],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287088499*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b01c64d0-52dc-4959-a4e4-ceba84c3bc8b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "26"}],
+  SequenceForm["Collision with wall: ", 26],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870892897`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"cf4d92f7-1f1a-46f9-bf8e-e991d0df1ce8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "27"}],
+  SequenceForm["Collision between blocks: ", 27],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287090088*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0d9e58fb-6c92-4fde-8656-4180d90097d9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "28"}],
+  SequenceForm["Collision with wall: ", 28],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870908823`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"83a03b31-e047-47c6-9835-919ce20fb76b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "29"}],
+  SequenceForm["Collision between blocks: ", 29],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828709168*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4e8181e5-0c3c-454c-b1f9-1b14c1ade1bc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "30"}],
+  SequenceForm["Collision with wall: ", 30],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828709247*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"663fb3f8-7571-4bb8-b16f-191b1e912d6d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "31"}],
+  SequenceForm["Collision between blocks: ", 31],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287093264*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e3ce6677-2f84-4db4-8e8e-f77d9c1277e0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "32"}],
+  SequenceForm["Collision with wall: ", 32],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828709407*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"56ffa7bd-092e-4f6d-808e-ebe9973aff4b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "33"}],
+  SequenceForm["Collision between blocks: ", 33],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828709487*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e5cb1ac1-5e44-4fda-a00d-79af277f635d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "34"}],
+  SequenceForm["Collision with wall: ", 34],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828709566*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"30eab03b-d09c-4f1b-afb3-90ddd914e51c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "35"}],
+  SequenceForm["Collision between blocks: ", 35],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870964327`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"40af3d26-e1ac-48a8-b72f-4181d57c0d4e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "36"}],
+  SequenceForm["Collision with wall: ", 36],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282870971823`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"aa48f0ab-3d1d-40c0-bce4-d78ca11e8ffe"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "37"}],
+  SequenceForm["Collision between blocks: ", 37],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287097937*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b78270b9-f91e-4573-9594-53cd79b2d00a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "38"}],
+  SequenceForm["Collision with wall: ", 38],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287098708*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"fd42c8c7-5bce-4808-a650-45a7ee74174d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "39"}],
+  SequenceForm["Collision between blocks: ", 39],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287099464*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"46a1f422-68e2-4572-9e45-2a4d82e1be22"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "40"}],
+  SequenceForm["Collision with wall: ", 40],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871002398`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2ab98f4c-6410-4814-9a74-b0097bba0f70"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "41"}],
+  SequenceForm["Collision between blocks: ", 41],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287100997*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5922d649-38c0-4343-bb16-33ca20a57947"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "42"}],
+  SequenceForm["Collision with wall: ", 42],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287101753*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"9d25175d-7a64-4fe5-a043-a0c4911c59fd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "43"}],
+  SequenceForm["Collision between blocks: ", 43],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287102516*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"7b30f6e4-5596-4c24-b06d-a5f8d38bc868"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "44"}],
+  SequenceForm["Collision with wall: ", 44],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871032753`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8e08e8a0-7446-4f64-8802-ebdf49a9e0a5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "45"}],
+  SequenceForm["Collision between blocks: ", 45],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287104043*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"215a93f7-2116-4f22-8b5b-60a761b915d8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "46"}],
+  SequenceForm["Collision with wall: ", 46],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287104775*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"38bcca3e-e9f5-48f4-a8ca-d46826a8c460"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "47"}],
+  SequenceForm["Collision between blocks: ", 47],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287105508*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c5fbaefa-05da-4e7f-af4a-44c4e65d78cf"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "48"}],
+  SequenceForm["Collision with wall: ", 48],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287106241*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"6391d96c-f7a8-49eb-8f45-1df6c75c7d72"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "49"}],
+  SequenceForm["Collision between blocks: ", 49],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287106988*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"bffd6d86-ca08-433a-bdff-770631b31cde"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "50"}],
+  SequenceForm["Collision with wall: ", 50],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287107731*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"bf74aa8b-22fb-46da-95e8-75da5c0d280b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "51"}],
+  SequenceForm["Collision between blocks: ", 51],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287108469*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4976ce92-0f91-4124-b3a5-af699ae50952"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "52"}],
+  SequenceForm["Collision with wall: ", 52],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871091957`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"6d4a1d33-46a8-4922-b9ba-5d3495153b6c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "53"}],
+  SequenceForm["Collision between blocks: ", 53],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287109931*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"35989091-6147-4d9b-aa1d-48ae803d3c77"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "54"}],
+  SequenceForm["Collision with wall: ", 54],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287110635*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5a61d2f6-5e7d-4dcd-868d-1acd10022f56"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "55"}],
+  SequenceForm["Collision between blocks: ", 55],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287111343*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4cbc124c-84c4-46d7-bc87-667ced85f55f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "56"}],
+  SequenceForm["Collision with wall: ", 56],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287112051*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d27c19d5-ce9e-4928-bc3f-b8bee28ea8dc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "57"}],
+  SequenceForm["Collision between blocks: ", 57],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871127567`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8bb080f2-e01f-4930-a593-5fb0ed81aca8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "58"}],
+  SequenceForm["Collision with wall: ", 58],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287113461*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"3a3a158b-5c03-435c-853c-691c6a0fcd03"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "59"}],
+  SequenceForm["Collision between blocks: ", 59],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287114181*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"db0916fa-a008-486a-82b2-e0c80ec9ea0d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "60"}],
+  SequenceForm["Collision with wall: ", 60],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287114895*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"83067fed-c870-4c10-bba2-12807eedbe32"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "61"}],
+  SequenceForm["Collision between blocks: ", 61],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871155987`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f8665f5c-591d-4271-bb02-7cc6b2e094b2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "62"}],
+  SequenceForm["Collision with wall: ", 62],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287116295*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"1a172a64-4713-46bd-aa64-3ce41f7845e3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "63"}],
+  SequenceForm["Collision between blocks: ", 63],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287116987*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"45e51844-0899-472a-816c-6ef962a7e1b0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "64"}],
+  SequenceForm["Collision with wall: ", 64],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871176863`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"aea3da87-d601-4ef2-9ca2-486a99fe4d4c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "65"}],
+  SequenceForm["Collision between blocks: ", 65],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287118381*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2d8ea1f5-56c0-4a88-89fb-58d830102c9f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "66"}],
+  SequenceForm["Collision with wall: ", 66],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287119069*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0e4465b6-45b7-4f55-b489-80d12309398b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "67"}],
+  SequenceForm["Collision between blocks: ", 67],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287119788*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"711e4623-17af-477f-87ff-ef3a52404243"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "68"}],
+  SequenceForm["Collision with wall: ", 68],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287120573*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5c8f7b3f-de09-4e21-9234-c018a43caaf2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "69"}],
+  SequenceForm["Collision between blocks: ", 69],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287121332*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c6268b1c-6f42-4a90-ad0c-164f93c79f45"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "70"}],
+  SequenceForm["Collision with wall: ", 70],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871220627`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c9292437-6860-4e42-bd4c-a589db4f837d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "71"}],
+  SequenceForm["Collision between blocks: ", 71],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871228*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"9b6b82cf-a317-4667-814e-8170bba97ca4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "72"}],
+  SequenceForm["Collision with wall: ", 72],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287123526*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d604be66-0d08-4091-be74-3b44f71fb92c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "73"}],
+  SequenceForm["Collision between blocks: ", 73],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287124235*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"86cbc42f-d0a4-4262-ad9a-e89be7c15f19"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "74"}],
+  SequenceForm["Collision with wall: ", 74],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287124982*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"597bef0c-403c-4e22-84d3-9634f37acbe9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "75"}],
+  SequenceForm["Collision between blocks: ", 75],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871256742`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"06516f1c-0631-4d4c-9f02-f61f9f707f0c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "76"}],
+  SequenceForm["Collision with wall: ", 76],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871263514`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"21c29708-5cbb-4047-a009-c8a5afc0c9c3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "77"}],
+  SequenceForm["Collision between blocks: ", 77],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828712703*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f40f1eb1-13a3-4e25-9bcf-c23c157ec4c6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "78"}],
+  SequenceForm["Collision with wall: ", 78],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287127706*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"69403f58-b6e0-4cab-818b-4df6d3ffcb1f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "79"}],
+  SequenceForm["Collision between blocks: ", 79],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287128389*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ac6a2b25-34e8-4955-869e-cfe5e2fd424b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "80"}],
+  SequenceForm["Collision with wall: ", 80],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871291027`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8bcb899a-0988-4894-9efd-a320eadbc888"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "81"}],
+  SequenceForm["Collision between blocks: ", 81],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287130027*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"28693a16-ae4b-405c-b78d-ee6f170f4e0b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "82"}],
+  SequenceForm["Collision with wall: ", 82],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871308737`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b3ebffc2-3ddc-493e-b9e4-0038c5bca045"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "83"}],
+  SequenceForm["Collision between blocks: ", 83],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287131673*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"487983f5-9764-471c-b4b8-ee9edd2fd3bb"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "84"}],
+  SequenceForm["Collision with wall: ", 84],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287132517*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"402bc582-5a8c-408f-823c-7b18c2e173b1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "85"}],
+  SequenceForm["Collision between blocks: ", 85],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287133326*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f0c86e8e-22e2-450e-b153-db1e0a92cda8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "86"}],
+  SequenceForm["Collision with wall: ", 86],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287134128*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d9a27418-9499-4f86-8840-c1a610e47109"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "87"}],
+  SequenceForm["Collision between blocks: ", 87],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287135021*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"726ec924-fea7-49d0-be8e-d9b2427275d7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "88"}],
+  SequenceForm["Collision with wall: ", 88],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287135845*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2af5d3fb-40e4-4cce-b127-5c0ecac1295c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "89"}],
+  SequenceForm["Collision between blocks: ", 89],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287136589*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"9ed15f93-7d9e-4bd5-bdd1-8fde8114eeee"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "90"}],
+  SequenceForm["Collision with wall: ", 90],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287137354*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e38a009a-58bf-4e1c-85b9-3d981da10994"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "91"}],
+  SequenceForm["Collision between blocks: ", 91],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287138124*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"acbf49cc-411f-46a8-ad37-0689186d01dc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "92"}],
+  SequenceForm["Collision with wall: ", 92],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287138892*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f9db45f9-da5e-43e8-80f9-49679bba5184"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "93"}],
+  SequenceForm["Collision between blocks: ", 93],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287139558*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0db0ac88-3be2-4130-b75a-964160994e4c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "94"}],
+  SequenceForm["Collision with wall: ", 94],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871402283`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e07e0beb-c006-4fc2-972a-3071b400cc7c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "95"}],
+  SequenceForm["Collision between blocks: ", 95],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287140902*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"27ee4248-45cc-4016-804d-49f769d114fb"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "96"}],
+  SequenceForm["Collision with wall: ", 96],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287141567*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"7c2fe7f6-c115-478a-a1e7-5ef61f03bf80"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "97"}],
+  SequenceForm["Collision between blocks: ", 97],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287142234*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e4ff27f2-38a6-4af9-aa41-9967c6b595f8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "98"}],
+  SequenceForm["Collision with wall: ", 98],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871429043`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a581ffbc-010d-4c48-a837-b2b4be19028b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "99"}],
+  SequenceForm["Collision between blocks: ", 99],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287143568*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4419c449-64a8-4e91-93b4-21a4f8b83562"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "100"}],
+  SequenceForm["Collision with wall: ", 100],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871442423`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"70d05368-a3a7-4fb7-9c19-13274ff823af"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "101"}],
+  SequenceForm["Collision between blocks: ", 101],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287144925*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0cd84a27-b56a-418b-af7d-c24395e47c49"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "102"}],
+  SequenceForm["Collision with wall: ", 102],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287145595*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"11561c50-d775-4374-8f2b-72e531856222"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "103"}],
+  SequenceForm["Collision between blocks: ", 103],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287146262*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"3a8b6e6e-7d4a-4cfb-9e4d-7a15001d4d00"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "104"}],
+  SequenceForm["Collision with wall: ", 104],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287146928*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"081c89c8-376a-40f8-9c75-3d770e963869"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "105"}],
+  SequenceForm["Collision between blocks: ", 105],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287147596*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"66569afd-120b-42ee-819d-222327d5e295"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "106"}],
+  SequenceForm["Collision with wall: ", 106],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871482677`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a3be1654-32ae-476e-a7c8-0b0d57c791ba"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "107"}],
+  SequenceForm["Collision between blocks: ", 107],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287148994*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"7618e08e-bb59-46a4-b186-3b1eeccf92a6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "108"}],
+  SequenceForm["Collision with wall: ", 108],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828714979*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2ad2ef5c-a5b1-473e-8c82-f8e2a6fca8e9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "109"}],
+  SequenceForm["Collision between blocks: ", 109],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287150474*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"9dc967d8-3000-48be-bd25-20ac8a760494"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "110"}],
+  SequenceForm["Collision with wall: ", 110],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287151145*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"6370a768-0b69-4451-a8e6-b0cba2ff3729"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "111"}],
+  SequenceForm["Collision between blocks: ", 111],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287151815*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2867e1dc-586b-4271-8f2b-4c0bae014c4a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "112"}],
+  SequenceForm["Collision with wall: ", 112],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287152481*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"083d8efd-f980-4bad-acf0-5bb79a21e6c8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "113"}],
+  SequenceForm["Collision between blocks: ", 113],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287153145*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a272687e-d811-4ae4-84a4-e5d3f0fbde00"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "114"}],
+  SequenceForm["Collision with wall: ", 114],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287153811*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"fc767cc9-fdf9-4a0b-9371-04dea041c22a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "115"}],
+  SequenceForm["Collision between blocks: ", 115],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287154483*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ec827de3-1ae3-41ed-abc6-e92c56660348"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "116"}],
+  SequenceForm["Collision with wall: ", 116],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871551523`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"71d5fdde-35e1-4b1f-9b16-78e3ffdcb967"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "117"}],
+  SequenceForm["Collision between blocks: ", 117],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871558237`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"3e55783a-1615-4afb-b066-4c637493d49c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "118"}],
+  SequenceForm["Collision with wall: ", 118],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287156495*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"59e9ec15-b39f-481d-986c-2d5a3f157e0f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "119"}],
+  SequenceForm["Collision between blocks: ", 119],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871571712`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"6d91016a-0089-41b2-9bbe-26d64354f7fb"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "120"}],
+  SequenceForm["Collision with wall: ", 120],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287157839*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f87e8b31-4747-4636-8635-9fb7bc36fa9f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "121"}],
+  SequenceForm["Collision between blocks: ", 121],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871585083`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"423b3821-c331-4b6a-b443-5e8a313251e7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "122"}],
+  SequenceForm["Collision with wall: ", 122],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287159183*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"70c674e5-fd5a-4940-ba1c-05b95d307676"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "123"}],
+  SequenceForm["Collision between blocks: ", 123],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287159861*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"37fc2870-4a4a-44e3-b076-15f179b8eb28"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "124"}],
+  SequenceForm["Collision with wall: ", 124],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287160532*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"62d9f311-880b-45c6-af8a-a22606d4fcb9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "125"}],
+  SequenceForm["Collision between blocks: ", 125],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871612043`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c64131a1-13ae-42fc-8675-3f39c8466b68"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "126"}],
+  SequenceForm["Collision with wall: ", 126],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287161878*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b74dad84-f63d-4b29-9917-d1d478823e05"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "127"}],
+  SequenceForm["Collision between blocks: ", 127],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287162549*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"20b29916-35ba-4566-98bc-dd133d57a5bd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "128"}],
+  SequenceForm["Collision with wall: ", 128],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287163232*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4109d4bb-17bb-4b2d-a47b-a4398e255ec2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "129"}],
+  SequenceForm["Collision between blocks: ", 129],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287163911*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c9f8ecc0-6c6f-46ce-a942-fdadbdfae47d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "130"}],
+  SequenceForm["Collision with wall: ", 130],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287164591*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2f6e0266-67cc-4a02-82a0-a2a7d5b86f62"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "131"}],
+  SequenceForm["Collision between blocks: ", 131],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287165269*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"6c3a9cc6-c835-4b5e-80e9-38730be80bd6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "132"}],
+  SequenceForm["Collision with wall: ", 132],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287165949*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0f191932-b2d6-43f8-b46b-17da0bc686a6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "133"}],
+  SequenceForm["Collision between blocks: ", 133],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287166623*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0e0fde17-fc3b-4fd6-a5bf-5e0e47ad2b03"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "134"}],
+  SequenceForm["Collision with wall: ", 134],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871673098`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b7cd5908-2bc4-4678-96fd-5f4eb5b45d48"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "135"}],
+  SequenceForm["Collision between blocks: ", 135],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287167988*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"373a317e-874d-4b5e-9f72-22d45f6c2da7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "136"}],
+  SequenceForm["Collision with wall: ", 136],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287168665*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e004df17-fedd-4dc4-8186-79701754b646"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "137"}],
+  SequenceForm["Collision between blocks: ", 137],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871694*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8429b8c5-db8d-46ae-bfc6-d634207ba989"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "138"}],
+  SequenceForm["Collision with wall: ", 138],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287170092*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8c808f09-ba0b-4626-a622-5af60e089d3e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "139"}],
+  SequenceForm["Collision between blocks: ", 139],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871708593`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"fb07180d-a2e6-44a3-bf9e-5fab0178963d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "140"}],
+  SequenceForm["Collision with wall: ", 140],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287171623*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0ba7191d-92f3-4d12-b659-b622323125b0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "141"}],
+  SequenceForm["Collision between blocks: ", 141],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287172351*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"91da5237-6889-4233-80a7-88e6b0dfa344"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "142"}],
+  SequenceForm["Collision with wall: ", 142],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287173061*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f1f546f7-5d24-406c-8561-1d9129f6f226"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "143"}],
+  SequenceForm["Collision between blocks: ", 143],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871737537`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"55157d6a-3185-4dcf-ad52-1df2b2649f23"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "144"}],
+  SequenceForm["Collision with wall: ", 144],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287174461*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"03fcaffa-b515-4ec6-893f-5d0c1d78c8fe"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "145"}],
+  SequenceForm["Collision between blocks: ", 145],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828717514*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"452ba0ba-eac1-486c-bbfc-5f518b71144d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "146"}],
+  SequenceForm["Collision with wall: ", 146],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287175819*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"6773863a-044b-4884-9c12-4dee166f489a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "147"}],
+  SequenceForm["Collision between blocks: ", 147],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287176497*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2b7f84a9-7e47-44de-bfd2-dfa59af1cb51"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "148"}],
+  SequenceForm["Collision with wall: ", 148],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871771793`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"395578c7-c033-4e0d-9eb5-530d10d41dbf"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "149"}],
+  SequenceForm["Collision between blocks: ", 149],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287177907*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"22ab996d-a6c4-4650-8577-ddc38b5acda2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "150"}],
+  SequenceForm["Collision with wall: ", 150],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287178623*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"7e68780c-4a6b-4eb3-95f0-5b5066b252bf"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "151"}],
+  SequenceForm["Collision between blocks: ", 151],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871793013`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0f92b212-d43a-4853-bad1-cef313a7bb29"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "152"}],
+  SequenceForm["Collision with wall: ", 152],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287179991*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"19fd5e05-7ff7-4218-92d6-fc55c72f449f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "153"}],
+  SequenceForm["Collision between blocks: ", 153],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871806726`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"44043362-49a1-4f1a-9ff2-6a8ec86e3df2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "154"}],
+  SequenceForm["Collision with wall: ", 154],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287181366*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5dfe1b3a-4b0f-467e-b772-fbdd6ff69180"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "155"}],
+  SequenceForm["Collision between blocks: ", 155],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287182065*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"3c598313-5aec-46ea-a459-37994b58ad1b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "156"}],
+  SequenceForm["Collision with wall: ", 156],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287182746*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"09ce12f4-4554-4ae9-81c5-e839702df8d5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "157"}],
+  SequenceForm["Collision between blocks: ", 157],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871834383`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"031e222c-2b5e-49d4-8d02-6203b27b8fc6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "158"}],
+  SequenceForm["Collision with wall: ", 158],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287184135*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0371cfc7-b42c-4383-bc79-f401697b3115"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "159"}],
+  SequenceForm["Collision between blocks: ", 159],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287184821*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"dfb430b0-9572-4559-8df4-ec9ec2adb1b0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "160"}],
+  SequenceForm["Collision with wall: ", 160],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287185502*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"78fcdc02-bf17-4573-81a8-7b7e18187389"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "161"}],
+  SequenceForm["Collision between blocks: ", 161],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287186195*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b542ede7-7f2e-42cc-95de-7c81cba91107"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "162"}],
+  SequenceForm["Collision with wall: ", 162],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287186874*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"67695136-a81e-4768-81c6-f25368657b20"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "163"}],
+  SequenceForm["Collision between blocks: ", 163],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287187557*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0876ea9d-5ff1-4a7c-8d71-27a51a24d266"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "164"}],
+  SequenceForm["Collision with wall: ", 164],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871882544`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"1ad089da-2624-445b-b453-83c1d1ec02ff"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "165"}],
+  SequenceForm["Collision between blocks: ", 165],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287188944*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"1a6c8bfb-7989-4c97-aac8-baf3a2a1f0be"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "166"}],
+  SequenceForm["Collision with wall: ", 166],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828718967*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"de70e7fc-3cfc-4902-bc48-e399663604ad"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "167"}],
+  SequenceForm["Collision between blocks: ", 167],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287190405*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2893abcf-3a36-4c67-86d8-d786914b03f6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "168"}],
+  SequenceForm["Collision with wall: ", 168],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871911287`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4abe3ab3-3494-4a20-a8b2-2502254bfd1f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "169"}],
+  SequenceForm["Collision between blocks: ", 169],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287191814*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4cd05233-23ca-474f-b4b5-2b524fcedf6a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "170"}],
+  SequenceForm["Collision with wall: ", 170],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871924973`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"206d26a4-5eac-4ea3-b3a7-fbc1c3baec0b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "171"}],
+  SequenceForm["Collision between blocks: ", 171],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287193183*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"68dc5d82-f7cb-4874-b8be-6936cdd73df2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "172"}],
+  SequenceForm["Collision with wall: ", 172],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282871938667`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"fead1c9d-e84f-4003-b9eb-f23955abfcac"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "173"}],
+  SequenceForm["Collision between blocks: ", 173],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287194559*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a7c10d9a-72e5-4230-9830-0230c551040b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "174"}],
+  SequenceForm["Collision with wall: ", 174],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828719525*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"92542334-d519-4e11-ae12-87a72aca4b7a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "175"}],
+  SequenceForm["Collision between blocks: ", 175],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287195941*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"aa81e50d-92c3-48e9-a27a-c05842d6fecc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "176"}],
+  SequenceForm["Collision with wall: ", 176],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287196628*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"05abc417-8036-4616-8b1e-f6cc515fc088"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "177"}],
+  SequenceForm["Collision between blocks: ", 177],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287197318*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"9cc5344e-fb0b-4ccc-a41e-ba3453732bca"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "178"}],
+  SequenceForm["Collision with wall: ", 178],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287198008*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f66b5194-da8a-4a9d-95d5-7e2f080511aa"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "179"}],
+  SequenceForm["Collision between blocks: ", 179],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287198702*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d9409368-6ba5-43c1-915d-8b1072c29b86"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "180"}],
+  SequenceForm["Collision with wall: ", 180],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287199409*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"22f0d880-b2a3-46cd-a8d7-b822ada73985"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "181"}],
+  SequenceForm["Collision between blocks: ", 181],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287200103*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b30a37de-6fde-45ec-83c8-2a7a6fdb1660"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "182"}],
+  SequenceForm["Collision with wall: ", 182],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287200807*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b3ab8424-b330-4ea4-9836-645d388919f3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "183"}],
+  SequenceForm["Collision between blocks: ", 183],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287201495*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"06ba3a9a-30e4-4627-bff5-182ac69ea407"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "184"}],
+  SequenceForm["Collision with wall: ", 184],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287202189*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c2ada181-57ff-4413-988d-907d6dbe3a78"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "185"}],
+  SequenceForm["Collision between blocks: ", 185],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872028847`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ed6064e8-8d7a-40ff-a4b1-975d827767e5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "186"}],
+  SequenceForm["Collision with wall: ", 186],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287203577*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c027486a-c13d-43ff-9551-7be4f874247c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "187"}],
+  SequenceForm["Collision between blocks: ", 187],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287204278*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"3d8c1334-df4d-47ee-bbd5-46a8f84573d9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "188"}],
+  SequenceForm["Collision with wall: ", 188],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287204974*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"9536feb4-9a85-4b07-be9a-082eca77013d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "189"}],
+  SequenceForm["Collision between blocks: ", 189],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287205669*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"3fc15e59-235d-490a-8014-42bd4c3ca0fc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "190"}],
+  SequenceForm["Collision with wall: ", 190],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287206369*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"1c7314f6-424a-4e3e-b8ca-307ee5416fc7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "191"}],
+  SequenceForm["Collision between blocks: ", 191],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287207081*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"623b25e9-440c-4cbc-9f7c-45fce9a46ab7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "192"}],
+  SequenceForm["Collision with wall: ", 192],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872078323`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ac75e6b6-c617-4b89-8736-471460b04246"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "193"}],
+  SequenceForm["Collision between blocks: ", 193],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287208527*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e67744db-db8c-428c-aa48-d4e4190ade16"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "194"}],
+  SequenceForm["Collision with wall: ", 194],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872092257`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2a2b7b29-859c-4a8e-91db-c9bd2b04fdd5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "195"}],
+  SequenceForm["Collision between blocks: ", 195],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287209923*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"975d34a6-565c-4003-a106-00685e1a6d1b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "196"}],
+  SequenceForm["Collision with wall: ", 196],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287210635*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c8ce693f-9066-4fa6-9cef-09d8d1bcf6e4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "197"}],
+  SequenceForm["Collision between blocks: ", 197],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287211336*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"195c1072-e06f-45b9-aeca-90f53a019e6a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "198"}],
+  SequenceForm["Collision with wall: ", 198],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287212038*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ff98ce13-c309-4dbb-ab2b-2a0b348ab5e7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "199"}],
+  SequenceForm["Collision between blocks: ", 199],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287212738*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5b457c51-3ab1-4658-b448-9eed7986b2d9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "200"}],
+  SequenceForm["Collision with wall: ", 200],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287213441*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"3127b42c-ec8b-4f1a-b60f-3ed522350e75"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "201"}],
+  SequenceForm["Collision between blocks: ", 201],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287214164*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"127a8f83-c94d-4213-b005-0e8f30fdeebb"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "202"}],
+  SequenceForm["Collision with wall: ", 202],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828721487*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"cb76707b-e08d-48eb-a9a9-129f7b11e568"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "203"}],
+  SequenceForm["Collision between blocks: ", 203],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287215619*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e29bcdc6-1e3a-47b1-8e88-7ce1c07bc4f4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "204"}],
+  SequenceForm["Collision with wall: ", 204],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287216332*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"93a0921f-e095-4ae0-80b8-d79cf2aeb3ad"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "205"}],
+  SequenceForm["Collision between blocks: ", 205],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287217033*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a2aa7fbf-3a64-4c3f-a082-433d784687a7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "206"}],
+  SequenceForm["Collision with wall: ", 206],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872177343`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"574c582f-2c34-4254-b60b-9e01cf6434e8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "207"}],
+  SequenceForm["Collision between blocks: ", 207],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872184467`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"51f8a655-56cd-4718-872b-d791fea56385"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "208"}],
+  SequenceForm["Collision with wall: ", 208],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872191563`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"38a8514a-4fde-40fb-97a0-9d28ce419f99"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "209"}],
+  SequenceForm["Collision between blocks: ", 209],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287219857*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"74f807a2-f962-422f-a834-6511983e606a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "210"}],
+  SequenceForm["Collision with wall: ", 210],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287220565*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"cf0da43a-95c1-4eca-8198-988b9145b12e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "211"}],
+  SequenceForm["Collision between blocks: ", 211],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872212753`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"299d04e1-bd17-4eb2-8ff8-aa60c2e46d97"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "212"}],
+  SequenceForm["Collision with wall: ", 212],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872219887`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d0e71f24-4574-4b1d-bf62-64cfa26dabbb"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "213"}],
+  SequenceForm["Collision between blocks: ", 213],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872226954`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"468886af-92ba-4774-9ed0-ff7671ef2220"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "214"}],
+  SequenceForm["Collision with wall: ", 214],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872234163`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f5bf0ff7-5268-473e-83c5-0f6062135d43"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "215"}],
+  SequenceForm["Collision between blocks: ", 215],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287224127*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f09d4dd4-066d-4659-a686-f9b5d7354b15"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "216"}],
+  SequenceForm["Collision with wall: ", 216],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287224833*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"59732034-59a5-4324-8116-a7b9eb860e4b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "217"}],
+  SequenceForm["Collision between blocks: ", 217],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828722554*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d65bdc8a-4e66-4a65-937d-66d33c3b6b11"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "218"}],
+  SequenceForm["Collision with wall: ", 218],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872262573`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c769fdbd-2702-4242-923a-b268cba29cd7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "219"}],
+  SequenceForm["Collision between blocks: ", 219],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287226967*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"bf89170b-6236-43a8-9758-ee53719740c9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "220"}],
+  SequenceForm["Collision with wall: ", 220],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872276793`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4eabfc25-d615-4952-b1b4-c6d9850e9292"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "221"}],
+  SequenceForm["Collision between blocks: ", 221],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287228395*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b98e29ea-bc37-4239-b2d5-982ed69f22aa"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "222"}],
+  SequenceForm["Collision with wall: ", 222],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287229113*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"325c76d4-b702-4a10-98d0-36fd244a98da"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "223"}],
+  SequenceForm["Collision between blocks: ", 223],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287229826*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"6072edef-8db5-43a4-9e6a-8d9f8ea03957"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "224"}],
+  SequenceForm["Collision with wall: ", 224],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287230542*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"959a990c-ec09-4146-abdd-5be6acdc4eb1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "225"}],
+  SequenceForm["Collision between blocks: ", 225],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287231264*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8251e0aa-2733-4955-abcd-ec3c65491a27"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "226"}],
+  SequenceForm["Collision with wall: ", 226],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287231978*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b23c09bf-5bc0-493b-80a7-d5a89fd7fdbe"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "227"}],
+  SequenceForm["Collision between blocks: ", 227],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287232704*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a8e06848-37f6-415c-addf-490d662e6dc5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "228"}],
+  SequenceForm["Collision with wall: ", 228],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287233423*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e47b9812-a11b-43ff-8ec6-c79382f27477"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "229"}],
+  SequenceForm["Collision between blocks: ", 229],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872341623`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"83c6be6c-6af3-46ac-9625-f6ebf3935b11"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "230"}],
+  SequenceForm["Collision with wall: ", 230],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872348833`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d747fce1-1060-416a-ba4a-8bd141055b9b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "231"}],
+  SequenceForm["Collision between blocks: ", 231],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287235632*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"3c14eb14-de9b-4c8e-bdee-826d22716c95"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "232"}],
+  SequenceForm["Collision with wall: ", 232],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872363586`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"969f62cf-da30-4a5f-b166-3e0630245f3c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "233"}],
+  SequenceForm["Collision between blocks: ", 233],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287237075*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"12fcbbf8-7194-4bab-a5ed-0349718c138b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "234"}],
+  SequenceForm["Collision with wall: ", 234],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872377996`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"516cdeed-992d-4fb6-9810-615943a9d7ca"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "235"}],
+  SequenceForm["Collision between blocks: ", 235],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287238515*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4326aaff-4478-4768-919e-27519b48d11c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "236"}],
+  SequenceForm["Collision with wall: ", 236],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287239229*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8f3bb286-4833-4fde-a6a8-610a9fb8ca5a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "237"}],
+  SequenceForm["Collision between blocks: ", 237],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872399406`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"76e01069-1372-442c-abe3-822bb494b0d8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "238"}],
+  SequenceForm["Collision with wall: ", 238],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287240684*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5109c2be-3cbb-4c16-8077-cc21e54502c3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "239"}],
+  SequenceForm["Collision between blocks: ", 239],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287241404*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b2f77906-8682-4615-8a40-59117e23eba1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "240"}],
+  SequenceForm["Collision with wall: ", 240],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287242132*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"00d70f69-58bc-4426-98be-6d45cac6d84b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "241"}],
+  SequenceForm["Collision between blocks: ", 241],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287242861*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8eb4c0fb-814b-4845-9ea9-ae7768e394c5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "242"}],
+  SequenceForm["Collision with wall: ", 242],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828724365*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"115e8137-5d9a-4dbf-a928-667d62fcbca7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "243"}],
+  SequenceForm["Collision between blocks: ", 243],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287244391*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0ef10f07-a115-47f2-b918-a3b8a7743e03"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "244"}],
+  SequenceForm["Collision with wall: ", 244],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287245118*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5746b078-6b67-4bba-a7d3-05354b129931"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "245"}],
+  SequenceForm["Collision between blocks: ", 245],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287245843*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ad2f8c8f-0d3b-4788-a476-1a819cdec235"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "246"}],
+  SequenceForm["Collision with wall: ", 246],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872465687`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a19ad5d2-fed4-4b9d-9a07-f937983d134c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "247"}],
+  SequenceForm["Collision between blocks: ", 247],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872472887`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ce0d921e-6245-4b8d-96cc-cacab35151fd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "248"}],
+  SequenceForm["Collision with wall: ", 248],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287248011*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"fdbf89ad-fb77-46b2-a7ce-53514422bc8a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "249"}],
+  SequenceForm["Collision between blocks: ", 249],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287248733*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"99b013de-1530-4cda-abc6-97ebcb835bb1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "250"}],
+  SequenceForm["Collision with wall: ", 250],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287249455*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"9b1867e1-b19e-4a2e-a2f2-e93a0b417561"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "251"}],
+  SequenceForm["Collision between blocks: ", 251],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287250182*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"7ec76319-3b7f-4381-b092-5337eed952a4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "252"}],
+  SequenceForm["Collision with wall: ", 252],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287250909*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"64cc395e-75ac-4b41-ba2f-7fbb323d7d19"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "253"}],
+  SequenceForm["Collision between blocks: ", 253],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287251628*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"65e5caa7-81b3-4e05-b1c1-468086a4e56d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "254"}],
+  SequenceForm["Collision with wall: ", 254],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287252345*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"7906e663-ff41-4ddd-92cc-5aaad4d98bd7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "255"}],
+  SequenceForm["Collision between blocks: ", 255],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872530737`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ab6e32bf-1273-41d5-bbd6-6d5d6696e47d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "256"}],
+  SequenceForm["Collision with wall: ", 256],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872537947`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"9359d9b3-4af5-401d-b41c-5eaafe320dbe"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "257"}],
+  SequenceForm["Collision between blocks: ", 257],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287254525*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ed20dadf-69d9-4f4e-842e-50629974aec1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "258"}],
+  SequenceForm["Collision with wall: ", 258],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872552423`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f04f374f-1d53-4356-912f-37f16b308695"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "259"}],
+  SequenceForm["Collision between blocks: ", 259],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287255968*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2dd85e03-133d-4bb8-96da-b375b92dd229"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "260"}],
+  SequenceForm["Collision with wall: ", 260],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287256686*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2444d331-0079-4b27-9baa-1fe9c81fd457"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "261"}],
+  SequenceForm["Collision between blocks: ", 261],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287257403*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d0c5bf26-cef5-425f-a18d-bc64941f6633"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "262"}],
+  SequenceForm["Collision with wall: ", 262],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287258127*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ccbc141b-929a-4882-9b2a-4ac32240a163"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "263"}],
+  SequenceForm["Collision between blocks: ", 263],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828725885*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"281ec8a5-42bc-4679-8dd0-6ec97cfa9c76"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "264"}],
+  SequenceForm["Collision with wall: ", 264],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287259574*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d1bca91c-2ed8-4ea8-8185-46e657233a5e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "265"}],
+  SequenceForm["Collision between blocks: ", 265],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287260298*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c8ac2fca-6898-4406-954d-c1af80aa5370"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "266"}],
+  SequenceForm["Collision with wall: ", 266],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287261052*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"fcc31367-7d78-4575-a3e0-3f0d5bf60f4f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "267"}],
+  SequenceForm["Collision between blocks: ", 267],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828726178*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b5238045-14e3-46fc-a1fd-c5c472015870"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "268"}],
+  SequenceForm["Collision with wall: ", 268],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872625027`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"3d89d737-1661-4dc6-84f6-7f2f0e008f75"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "269"}],
+  SequenceForm["Collision between blocks: ", 269],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287263225*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"722073ad-ae13-4057-b81d-85b329a9184f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "270"}],
+  SequenceForm["Collision with wall: ", 270],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287263947*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d4eaca3f-90ab-408c-af62-604d65642e63"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "271"}],
+  SequenceForm["Collision between blocks: ", 271],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828726467*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"63e5c86b-9cb8-4e10-a8c9-549218bb3fcf"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "272"}],
+  SequenceForm["Collision with wall: ", 272],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287265398*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"69780de5-26a5-47fa-a939-57d014d3bd02"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "273"}],
+  SequenceForm["Collision between blocks: ", 273],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872661257`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5ecdab9f-ede6-49c0-9aa3-2f0fce7134d3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "274"}],
+  SequenceForm["Collision with wall: ", 274],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287266848*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"ab251405-b6b7-4279-9e12-752f2ffb2780"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "275"}],
+  SequenceForm["Collision between blocks: ", 275],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287267571*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"dac74587-7bed-4680-8624-337d596e23dd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "276"}],
+  SequenceForm["Collision with wall: ", 276],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287268299*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"eadaf847-269b-4d86-98f6-759047684cff"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "277"}],
+  SequenceForm["Collision between blocks: ", 277],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287269026*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2618b9c0-9566-426f-aaf2-652f423b8e82"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "278"}],
+  SequenceForm["Collision with wall: ", 278],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872697563`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"330316d0-7725-4de8-98a8-ffb70b943dab"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "279"}],
+  SequenceForm["Collision between blocks: ", 279],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287270483*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f48c8666-b4c2-4f31-b637-63b599e0e183"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "280"}],
+  SequenceForm["Collision with wall: ", 280],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872712097`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"6416cf29-a759-4d17-87a3-0ec666364b1e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "281"}],
+  SequenceForm["Collision between blocks: ", 281],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287271943*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0e8f4586-7e24-4260-a519-837ed9ca996b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "282"}],
+  SequenceForm["Collision with wall: ", 282],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287272675*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5fdfe9da-f7fb-41f6-a7c2-1b50789ab9e7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "283"}],
+  SequenceForm["Collision between blocks: ", 283],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287273405*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2a4ecaf7-fbcc-4893-810e-7f67d1270ebd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "284"}],
+  SequenceForm["Collision with wall: ", 284],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828727417*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e0aadfda-9999-4207-a335-d214a14685b1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "285"}],
+  SequenceForm["Collision between blocks: ", 285],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872749023`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"7f35a965-d631-49a2-9515-fec086adfb21"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "286"}],
+  SequenceForm["Collision with wall: ", 286],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.93812828727564*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"5a19ab83-5d9c-497d-846c-c4eb92386fae"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "287"}],
+  SequenceForm["Collision between blocks: ", 287],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287276371*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e806bc61-4d7f-4960-8767-1e3484c14f16"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "288"}],
+  SequenceForm["Collision with wall: ", 288],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287277101*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"dc2dda14-cd9e-4b04-940c-46e3f6f41b17"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "289"}],
+  SequenceForm["Collision between blocks: ", 289],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287277835*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0becb607-64a5-4ff5-bf70-60e1c2e405c3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "290"}],
+  SequenceForm["Collision with wall: ", 290],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287278569*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"0d88fb20-dc78-4cb9-aa51-e80db9104150"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "291"}],
+  SequenceForm["Collision between blocks: ", 291],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287279318*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"04960559-4730-4969-a03e-6b87db581016"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "292"}],
+  SequenceForm["Collision with wall: ", 292],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287280064*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"74353c8a-9338-4423-9aa0-b7525a838740"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "293"}],
+  SequenceForm["Collision between blocks: ", 293],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287280836*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"43863c42-3079-46eb-9440-bd77ca7ebcf8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "294"}],
+  SequenceForm["Collision with wall: ", 294],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287281579*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a4e6c2ae-98a1-4f6d-a3d2-4ded35557c0c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "295"}],
+  SequenceForm["Collision between blocks: ", 295],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287282325*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"aa66b49c-c362-4796-bcf2-30e7a5b84006"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "296"}],
+  SequenceForm["Collision with wall: ", 296],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287283057*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"df1f610d-49ef-4df6-be3b-6da875ea6c13"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "297"}],
+  SequenceForm["Collision between blocks: ", 297],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872837963`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"a29163b9-8546-4eec-acfd-566d30fae172"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "298"}],
+  SequenceForm["Collision with wall: ", 298],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287284545*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"f9192ac6-8ff3-4dce-a594-0a891f993eca"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "299"}],
+  SequenceForm["Collision between blocks: ", 299],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287285294*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"6681b788-439f-4469-bcad-308c6265e95b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "300"}],
+  SequenceForm["Collision with wall: ", 300],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287286036*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"e8c5a984-78db-4f83-8f9e-dc9a8070d97f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "301"}],
+  SequenceForm["Collision between blocks: ", 301],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287286778*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"8a5b63c8-32b3-447b-ac49-e3d6ccfd5741"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "302"}],
+  SequenceForm["Collision with wall: ", 302],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287287526*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"fccbf21c-ba63-4c9a-af89-ea6bd3a01a63"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "303"}],
+  SequenceForm["Collision between blocks: ", 303],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287288273*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"23abaaf6-2c7b-4c09-9eca-f38e74bfe7b0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "304"}],
+  SequenceForm["Collision with wall: ", 304],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287289016*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"789f564b-e97a-4939-bb88-d21dd9057ced"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "305"}],
+  SequenceForm["Collision between blocks: ", 305],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287289771*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4d6624cb-f6eb-49b6-bec8-8ff3c8a9d6be"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "306"}],
+  SequenceForm["Collision with wall: ", 306],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872905083`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"4e6f96f4-9098-487f-a602-aa25e703c447"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "307"}],
+  SequenceForm["Collision between blocks: ", 307],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872912617`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d51e5f83-1bb8-4c5a-a761-819d8e39ca21"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "308"}],
+  SequenceForm["Collision with wall: ", 308],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287292007*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b64f0916-2927-462d-91ed-31f3bc19215d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "309"}],
+  SequenceForm["Collision between blocks: ", 309],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872927513`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"d2e292fd-44cc-4cd4-b45b-8ce761ca30a3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "310"}],
+  SequenceForm["Collision with wall: ", 310],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287293498*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"c3a73744-bae4-47eb-98a8-83c566db58c9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "311"}],
+  SequenceForm["Collision between blocks: ", 311],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287294242*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"198f2e31-286e-44d4-9a3d-4dbae226e1cd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "312"}],
+  SequenceForm["Collision with wall: ", 312],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282872949867`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"2f6347b3-dcb0-4d9b-a86d-8999c2cadf8c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision between blocks: \"\>", "\[InvisibleSpace]", "313"}],
+  SequenceForm["Collision between blocks: ", 313],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287295732*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"b4fbb7d6-a41d-4c4d-80a2-465e7b7b5b58"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Collision with wall: \"\>", "\[InvisibleSpace]", "314"}],
+  SequenceForm["Collision with wall: ", 314],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.938128287296486*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"08359622-1896-4721-a960-c76f2de0419c"]
+}, Open  ]],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.9381282922773237`*^9},
+ CellLabel->"Out[34]=",ExpressionUUID->"934ca159-9312-40ce-9a55-637b1339773f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Total number of collisions: \"\>", "\[InvisibleSpace]", "314"}],
+  SequenceForm["Total number of collisions: ", 314],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9381282922798033`*^9},
+ CellLabel->
+  "During evaluation of \
+In[34]:=",ExpressionUUID->"03e2af9a-af11-48b6-ae5e-b4e77ce047ca"]
+}, Open  ]]
+},
+WindowSize->{1689, 911},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f6b3eee0-8c09-41f4-8803-d14c0017517c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 4555, 121, 367, "Input",ExpressionUUID->"ae2a8194-02b7-4d35-9a22-4b18aa6d89fb"],
+Cell[CellGroupData[{
+Cell[5160, 147, 335, 8, 24, "Print",ExpressionUUID->"a5433973-0684-4598-a6a2-a83182ee3592"],
+Cell[5498, 157, 325, 8, 24, "Print",ExpressionUUID->"367e21e0-6eac-4994-b099-826ab696763e"],
+Cell[5826, 167, 337, 8, 24, "Print",ExpressionUUID->"c9980658-6a82-42d4-b4fb-ee4cfa34b086"],
+Cell[6166, 177, 325, 8, 24, "Print",ExpressionUUID->"1d34ffe3-c11f-4836-984f-5b6b7cf2aa45"],
+Cell[6494, 187, 337, 8, 24, "Print",ExpressionUUID->"f54b2f3b-c646-49a7-b9b1-61c5721afc49"],
+Cell[6834, 197, 325, 8, 24, "Print",ExpressionUUID->"90223423-5097-45eb-ad8d-0db46181f5cc"],
+Cell[7162, 207, 335, 8, 24, "Print",ExpressionUUID->"4fd2d8a5-39d9-49af-9cbc-87b7f2245086"],
+Cell[7500, 217, 325, 8, 24, "Print",ExpressionUUID->"87f0dcd1-1cb5-4c61-bc3b-742433bfdf78"],
+Cell[7828, 227, 335, 8, 24, "Print",ExpressionUUID->"0f19bcd4-0e67-44d1-96da-199be298b585"],
+Cell[8166, 237, 327, 8, 24, "Print",ExpressionUUID->"8c7d5628-725f-4234-9299-076d1e85d5eb"],
+Cell[8496, 247, 337, 8, 24, "Print",ExpressionUUID->"1fb1f6fd-a1a7-4c0a-bf55-680a13268be0"],
+Cell[8836, 257, 327, 8, 24, "Print",ExpressionUUID->"aaf3c39d-f306-4973-9368-0f76be76c149"],
+Cell[9166, 267, 336, 8, 24, "Print",ExpressionUUID->"b15def43-13c3-438d-9550-efa8fe037948"],
+Cell[9505, 277, 329, 8, 24, "Print",ExpressionUUID->"a2a8106f-ef15-49ec-b118-caf12ea67d15"],
+Cell[9837, 287, 337, 8, 24, "Print",ExpressionUUID->"90168de3-02bb-4dc1-a348-99429a67c8a3"],
+Cell[10177, 297, 327, 8, 24, "Print",ExpressionUUID->"18fb6857-ebb2-4451-a06c-3e63ff4093ba"],
+Cell[10507, 307, 339, 8, 24, "Print",ExpressionUUID->"27056876-f003-4d77-bb97-be4d9a7a45de"],
+Cell[10849, 317, 327, 8, 24, "Print",ExpressionUUID->"9cc097f1-6d84-409c-a00a-9652c5a6e1f5"],
+Cell[11179, 327, 339, 8, 24, "Print",ExpressionUUID->"8ae70bb1-bcb4-4f3d-836d-8994d9b2561d"],
+Cell[11521, 337, 329, 8, 24, "Print",ExpressionUUID->"086435d0-f21f-49f4-838a-cfd9b739f088"],
+Cell[11853, 347, 339, 8, 24, "Print",ExpressionUUID->"8fc0e9a5-247e-45e8-b9e8-c81ac39c84cc"],
+Cell[12195, 357, 329, 8, 24, "Print",ExpressionUUID->"c2a28cf3-3fee-4d6f-baa5-28371465592b"],
+Cell[12527, 367, 337, 8, 24, "Print",ExpressionUUID->"dc5c243a-7c30-41c9-b730-27d35c69425b"],
+Cell[12867, 377, 327, 8, 24, "Print",ExpressionUUID->"17f6ca7a-1434-4cf5-9b41-de3a2374ff0e"],
+Cell[13197, 387, 337, 8, 24, "Print",ExpressionUUID->"b01c64d0-52dc-4959-a4e4-ceba84c3bc8b"],
+Cell[13537, 397, 329, 8, 24, "Print",ExpressionUUID->"cf4d92f7-1f1a-46f9-bf8e-e991d0df1ce8"],
+Cell[13869, 407, 337, 8, 24, "Print",ExpressionUUID->"0d9e58fb-6c92-4fde-8656-4180d90097d9"],
+Cell[14209, 417, 329, 8, 24, "Print",ExpressionUUID->"83a03b31-e047-47c6-9835-919ce20fb76b"],
+Cell[14541, 427, 336, 8, 24, "Print",ExpressionUUID->"4e8181e5-0c3c-454c-b1f9-1b14c1ade1bc"],
+Cell[14880, 437, 326, 8, 24, "Print",ExpressionUUID->"663fb3f8-7571-4bb8-b16f-191b1e912d6d"],
+Cell[15209, 447, 337, 8, 24, "Print",ExpressionUUID->"e3ce6677-2f84-4db4-8e8e-f77d9c1277e0"],
+Cell[15549, 457, 326, 8, 24, "Print",ExpressionUUID->"56ffa7bd-092e-4f6d-808e-ebe9973aff4b"],
+Cell[15878, 467, 336, 8, 24, "Print",ExpressionUUID->"e5cb1ac1-5e44-4fda-a00d-79af277f635d"],
+Cell[16217, 477, 326, 8, 24, "Print",ExpressionUUID->"30eab03b-d09c-4f1b-afb3-90ddd914e51c"],
+Cell[16546, 487, 339, 8, 24, "Print",ExpressionUUID->"40af3d26-e1ac-48a8-b72f-4181d57c0d4e"],
+Cell[16888, 497, 329, 8, 24, "Print",ExpressionUUID->"aa48f0ab-3d1d-40c0-bce4-d78ca11e8ffe"],
+Cell[17220, 507, 337, 8, 24, "Print",ExpressionUUID->"b78270b9-f91e-4573-9594-53cd79b2d00a"],
+Cell[17560, 517, 327, 8, 24, "Print",ExpressionUUID->"fd42c8c7-5bce-4808-a650-45a7ee74174d"],
+Cell[17890, 527, 337, 8, 24, "Print",ExpressionUUID->"46a1f422-68e2-4572-9e45-2a4d82e1be22"],
+Cell[18230, 537, 329, 8, 24, "Print",ExpressionUUID->"2ab98f4c-6410-4814-9a74-b0097bba0f70"],
+Cell[18562, 547, 337, 8, 24, "Print",ExpressionUUID->"5922d649-38c0-4343-bb16-33ca20a57947"],
+Cell[18902, 557, 327, 8, 24, "Print",ExpressionUUID->"9d25175d-7a64-4fe5-a043-a0c4911c59fd"],
+Cell[19232, 567, 337, 8, 24, "Print",ExpressionUUID->"7b30f6e4-5596-4c24-b06d-a5f8d38bc868"],
+Cell[19572, 577, 329, 8, 24, "Print",ExpressionUUID->"8e08e8a0-7446-4f64-8802-ebdf49a9e0a5"],
+Cell[19904, 587, 337, 8, 24, "Print",ExpressionUUID->"215a93f7-2116-4f22-8b5b-60a761b915d8"],
+Cell[20244, 597, 327, 8, 24, "Print",ExpressionUUID->"38bcca3e-e9f5-48f4-a8ca-d46826a8c460"],
+Cell[20574, 607, 337, 8, 24, "Print",ExpressionUUID->"c5fbaefa-05da-4e7f-af4a-44c4e65d78cf"],
+Cell[20914, 617, 327, 8, 24, "Print",ExpressionUUID->"6391d96c-f7a8-49eb-8f45-1df6c75c7d72"],
+Cell[21244, 627, 337, 8, 24, "Print",ExpressionUUID->"bffd6d86-ca08-433a-bdff-770631b31cde"],
+Cell[21584, 637, 327, 8, 24, "Print",ExpressionUUID->"bf74aa8b-22fb-46da-95e8-75da5c0d280b"],
+Cell[21914, 647, 337, 8, 24, "Print",ExpressionUUID->"4976ce92-0f91-4124-b3a5-af699ae50952"],
+Cell[22254, 657, 329, 8, 24, "Print",ExpressionUUID->"6d4a1d33-46a8-4922-b9ba-5d3495153b6c"],
+Cell[22586, 667, 337, 8, 24, "Print",ExpressionUUID->"35989091-6147-4d9b-aa1d-48ae803d3c77"],
+Cell[22926, 677, 327, 8, 24, "Print",ExpressionUUID->"5a61d2f6-5e7d-4dcd-868d-1acd10022f56"],
+Cell[23256, 687, 337, 8, 24, "Print",ExpressionUUID->"4cbc124c-84c4-46d7-bc87-667ced85f55f"],
+Cell[23596, 697, 327, 8, 24, "Print",ExpressionUUID->"d27c19d5-ce9e-4928-bc3f-b8bee28ea8dc"],
+Cell[23926, 707, 339, 8, 24, "Print",ExpressionUUID->"8bb080f2-e01f-4930-a593-5fb0ed81aca8"],
+Cell[24268, 717, 327, 8, 24, "Print",ExpressionUUID->"3a3a158b-5c03-435c-853c-691c6a0fcd03"],
+Cell[24598, 727, 337, 8, 24, "Print",ExpressionUUID->"db0916fa-a008-486a-82b2-e0c80ec9ea0d"],
+Cell[24938, 737, 327, 8, 24, "Print",ExpressionUUID->"83067fed-c870-4c10-bba2-12807eedbe32"],
+Cell[25268, 747, 339, 8, 24, "Print",ExpressionUUID->"f8665f5c-591d-4271-bb02-7cc6b2e094b2"],
+Cell[25610, 757, 327, 8, 24, "Print",ExpressionUUID->"1a172a64-4713-46bd-aa64-3ce41f7845e3"],
+Cell[25940, 767, 337, 8, 24, "Print",ExpressionUUID->"45e51844-0899-472a-816c-6ef962a7e1b0"],
+Cell[26280, 777, 329, 8, 24, "Print",ExpressionUUID->"aea3da87-d601-4ef2-9ca2-486a99fe4d4c"],
+Cell[26612, 787, 337, 8, 24, "Print",ExpressionUUID->"2d8ea1f5-56c0-4a88-89fb-58d830102c9f"],
+Cell[26952, 797, 327, 8, 24, "Print",ExpressionUUID->"0e4465b6-45b7-4f55-b489-80d12309398b"],
+Cell[27282, 807, 337, 8, 24, "Print",ExpressionUUID->"711e4623-17af-477f-87ff-ef3a52404243"],
+Cell[27622, 817, 327, 8, 24, "Print",ExpressionUUID->"5c8f7b3f-de09-4e21-9234-c018a43caaf2"],
+Cell[27952, 827, 337, 8, 24, "Print",ExpressionUUID->"c6268b1c-6f42-4a90-ad0c-164f93c79f45"],
+Cell[28292, 837, 329, 8, 24, "Print",ExpressionUUID->"c9292437-6860-4e42-bd4c-a589db4f837d"],
+Cell[28624, 847, 335, 8, 24, "Print",ExpressionUUID->"9b6b82cf-a317-4667-814e-8170bba97ca4"],
+Cell[28962, 857, 327, 8, 24, "Print",ExpressionUUID->"d604be66-0d08-4091-be74-3b44f71fb92c"],
+Cell[29292, 867, 337, 8, 24, "Print",ExpressionUUID->"86cbc42f-d0a4-4262-ad9a-e89be7c15f19"],
+Cell[29632, 877, 327, 8, 24, "Print",ExpressionUUID->"597bef0c-403c-4e22-84d3-9634f37acbe9"],
+Cell[29962, 887, 339, 8, 24, "Print",ExpressionUUID->"06516f1c-0631-4d4c-9f02-f61f9f707f0c"],
+Cell[30304, 897, 329, 8, 24, "Print",ExpressionUUID->"21c29708-5cbb-4047-a009-c8a5afc0c9c3"],
+Cell[30636, 907, 336, 8, 24, "Print",ExpressionUUID->"f40f1eb1-13a3-4e25-9bcf-c23c157ec4c6"],
+Cell[30975, 917, 327, 8, 24, "Print",ExpressionUUID->"69403f58-b6e0-4cab-818b-4df6d3ffcb1f"],
+Cell[31305, 927, 337, 8, 24, "Print",ExpressionUUID->"ac6a2b25-34e8-4955-869e-cfe5e2fd424b"],
+Cell[31645, 937, 329, 8, 24, "Print",ExpressionUUID->"8bcb899a-0988-4894-9efd-a320eadbc888"],
+Cell[31977, 947, 337, 8, 24, "Print",ExpressionUUID->"28693a16-ae4b-405c-b78d-ee6f170f4e0b"],
+Cell[32317, 957, 329, 8, 24, "Print",ExpressionUUID->"b3ebffc2-3ddc-493e-b9e4-0038c5bca045"],
+Cell[32649, 967, 337, 8, 24, "Print",ExpressionUUID->"487983f5-9764-471c-b4b8-ee9edd2fd3bb"],
+Cell[32989, 977, 327, 8, 24, "Print",ExpressionUUID->"402bc582-5a8c-408f-823c-7b18c2e173b1"],
+Cell[33319, 987, 337, 8, 24, "Print",ExpressionUUID->"f0c86e8e-22e2-450e-b153-db1e0a92cda8"],
+Cell[33659, 997, 327, 8, 24, "Print",ExpressionUUID->"d9a27418-9499-4f86-8840-c1a610e47109"],
+Cell[33989, 1007, 337, 8, 24, "Print",ExpressionUUID->"726ec924-fea7-49d0-be8e-d9b2427275d7"],
+Cell[34329, 1017, 327, 8, 24, "Print",ExpressionUUID->"2af5d3fb-40e4-4cce-b127-5c0ecac1295c"],
+Cell[34659, 1027, 337, 8, 24, "Print",ExpressionUUID->"9ed15f93-7d9e-4bd5-bdd1-8fde8114eeee"],
+Cell[34999, 1037, 327, 8, 24, "Print",ExpressionUUID->"e38a009a-58bf-4e1c-85b9-3d981da10994"],
+Cell[35329, 1047, 337, 8, 24, "Print",ExpressionUUID->"acbf49cc-411f-46a8-ad37-0689186d01dc"],
+Cell[35669, 1057, 327, 8, 24, "Print",ExpressionUUID->"f9db45f9-da5e-43e8-80f9-49679bba5184"],
+Cell[35999, 1067, 337, 8, 24, "Print",ExpressionUUID->"0db0ac88-3be2-4130-b75a-964160994e4c"],
+Cell[36339, 1077, 329, 8, 24, "Print",ExpressionUUID->"e07e0beb-c006-4fc2-972a-3071b400cc7c"],
+Cell[36671, 1087, 337, 8, 24, "Print",ExpressionUUID->"27ee4248-45cc-4016-804d-49f769d114fb"],
+Cell[37011, 1097, 327, 8, 24, "Print",ExpressionUUID->"7c2fe7f6-c115-478a-a1e7-5ef61f03bf80"],
+Cell[37341, 1107, 337, 8, 24, "Print",ExpressionUUID->"e4ff27f2-38a6-4af9-aa41-9967c6b595f8"],
+Cell[37681, 1117, 329, 8, 24, "Print",ExpressionUUID->"a581ffbc-010d-4c48-a837-b2b4be19028b"],
+Cell[38013, 1127, 337, 8, 24, "Print",ExpressionUUID->"4419c449-64a8-4e91-93b4-21a4f8b83562"],
+Cell[38353, 1137, 331, 8, 24, "Print",ExpressionUUID->"70d05368-a3a7-4fb7-9c19-13274ff823af"],
+Cell[38687, 1147, 339, 8, 24, "Print",ExpressionUUID->"0cd84a27-b56a-418b-af7d-c24395e47c49"],
+Cell[39029, 1157, 329, 8, 24, "Print",ExpressionUUID->"11561c50-d775-4374-8f2b-72e531856222"],
+Cell[39361, 1167, 339, 8, 24, "Print",ExpressionUUID->"3a8b6e6e-7d4a-4cfb-9e4d-7a15001d4d00"],
+Cell[39703, 1177, 329, 8, 24, "Print",ExpressionUUID->"081c89c8-376a-40f8-9c75-3d770e963869"],
+Cell[40035, 1187, 339, 8, 24, "Print",ExpressionUUID->"66569afd-120b-42ee-819d-222327d5e295"],
+Cell[40377, 1197, 331, 8, 24, "Print",ExpressionUUID->"a3be1654-32ae-476e-a7c8-0b0d57c791ba"],
+Cell[40711, 1207, 339, 8, 24, "Print",ExpressionUUID->"7618e08e-bb59-46a4-b186-3b1eeccf92a6"],
+Cell[41053, 1217, 328, 8, 24, "Print",ExpressionUUID->"2ad2ef5c-a5b1-473e-8c82-f8e2a6fca8e9"],
+Cell[41384, 1227, 339, 8, 24, "Print",ExpressionUUID->"9dc967d8-3000-48be-bd25-20ac8a760494"],
+Cell[41726, 1237, 329, 8, 24, "Print",ExpressionUUID->"6370a768-0b69-4451-a8e6-b0cba2ff3729"],
+Cell[42058, 1247, 339, 8, 24, "Print",ExpressionUUID->"2867e1dc-586b-4271-8f2b-4c0bae014c4a"],
+Cell[42400, 1257, 329, 8, 24, "Print",ExpressionUUID->"083d8efd-f980-4bad-acf0-5bb79a21e6c8"],
+Cell[42732, 1267, 339, 8, 24, "Print",ExpressionUUID->"a272687e-d811-4ae4-84a4-e5d3f0fbde00"],
+Cell[43074, 1277, 329, 8, 24, "Print",ExpressionUUID->"fc767cc9-fdf9-4a0b-9371-04dea041c22a"],
+Cell[43406, 1287, 339, 8, 24, "Print",ExpressionUUID->"ec827de3-1ae3-41ed-abc6-e92c56660348"],
+Cell[43748, 1297, 331, 8, 24, "Print",ExpressionUUID->"71d5fdde-35e1-4b1f-9b16-78e3ffdcb967"],
+Cell[44082, 1307, 341, 8, 24, "Print",ExpressionUUID->"3e55783a-1615-4afb-b066-4c637493d49c"],
+Cell[44426, 1317, 329, 8, 24, "Print",ExpressionUUID->"59e9ec15-b39f-481d-986c-2d5a3f157e0f"],
+Cell[44758, 1327, 341, 8, 24, "Print",ExpressionUUID->"6d91016a-0089-41b2-9bbe-26d64354f7fb"],
+Cell[45102, 1337, 329, 8, 24, "Print",ExpressionUUID->"f87e8b31-4747-4636-8635-9fb7bc36fa9f"],
+Cell[45434, 1347, 341, 8, 24, "Print",ExpressionUUID->"423b3821-c331-4b6a-b443-5e8a313251e7"],
+Cell[45778, 1357, 329, 8, 24, "Print",ExpressionUUID->"70c674e5-fd5a-4940-ba1c-05b95d307676"],
+Cell[46110, 1367, 339, 8, 24, "Print",ExpressionUUID->"37fc2870-4a4a-44e3-b076-15f179b8eb28"],
+Cell[46452, 1377, 329, 8, 24, "Print",ExpressionUUID->"62d9f311-880b-45c6-af8a-a22606d4fcb9"],
+Cell[46784, 1387, 341, 8, 24, "Print",ExpressionUUID->"c64131a1-13ae-42fc-8675-3f39c8466b68"],
+Cell[47128, 1397, 329, 8, 24, "Print",ExpressionUUID->"b74dad84-f63d-4b29-9917-d1d478823e05"],
+Cell[47460, 1407, 339, 8, 24, "Print",ExpressionUUID->"20b29916-35ba-4566-98bc-dd133d57a5bd"],
+Cell[47802, 1417, 329, 8, 24, "Print",ExpressionUUID->"4109d4bb-17bb-4b2d-a47b-a4398e255ec2"],
+Cell[48134, 1427, 339, 8, 24, "Print",ExpressionUUID->"c9f8ecc0-6c6f-46ce-a942-fdadbdfae47d"],
+Cell[48476, 1437, 329, 8, 24, "Print",ExpressionUUID->"2f6e0266-67cc-4a02-82a0-a2a7d5b86f62"],
+Cell[48808, 1447, 339, 8, 24, "Print",ExpressionUUID->"6c3a9cc6-c835-4b5e-80e9-38730be80bd6"],
+Cell[49150, 1457, 329, 8, 24, "Print",ExpressionUUID->"0f191932-b2d6-43f8-b46b-17da0bc686a6"],
+Cell[49482, 1467, 339, 8, 24, "Print",ExpressionUUID->"0e0fde17-fc3b-4fd6-a5bf-5e0e47ad2b03"],
+Cell[49824, 1477, 331, 8, 24, "Print",ExpressionUUID->"b7cd5908-2bc4-4678-96fd-5f4eb5b45d48"],
+Cell[50158, 1487, 339, 8, 24, "Print",ExpressionUUID->"373a317e-874d-4b5e-9f72-22d45f6c2da7"],
+Cell[50500, 1497, 329, 8, 24, "Print",ExpressionUUID->"e004df17-fedd-4dc4-8186-79701754b646"],
+Cell[50832, 1507, 337, 8, 24, "Print",ExpressionUUID->"8429b8c5-db8d-46ae-bfc6-d634207ba989"],
+Cell[51172, 1517, 329, 8, 24, "Print",ExpressionUUID->"8c808f09-ba0b-4626-a622-5af60e089d3e"],
+Cell[51504, 1527, 341, 8, 24, "Print",ExpressionUUID->"fb07180d-a2e6-44a3-bf9e-5fab0178963d"],
+Cell[51848, 1537, 329, 8, 24, "Print",ExpressionUUID->"0ba7191d-92f3-4d12-b659-b622323125b0"],
+Cell[52180, 1547, 339, 8, 24, "Print",ExpressionUUID->"91da5237-6889-4233-80a7-88e6b0dfa344"],
+Cell[52522, 1557, 329, 8, 24, "Print",ExpressionUUID->"f1f546f7-5d24-406c-8561-1d9129f6f226"],
+Cell[52854, 1567, 341, 8, 24, "Print",ExpressionUUID->"55157d6a-3185-4dcf-ad52-1df2b2649f23"],
+Cell[53198, 1577, 329, 8, 24, "Print",ExpressionUUID->"03fcaffa-b515-4ec6-893f-5d0c1d78c8fe"],
+Cell[53530, 1587, 338, 8, 24, "Print",ExpressionUUID->"452ba0ba-eac1-486c-bbfc-5f518b71144d"],
+Cell[53871, 1597, 329, 8, 24, "Print",ExpressionUUID->"6773863a-044b-4884-9c12-4dee166f489a"],
+Cell[54203, 1607, 339, 8, 24, "Print",ExpressionUUID->"2b7f84a9-7e47-44de-bfd2-dfa59af1cb51"],
+Cell[54545, 1617, 331, 8, 24, "Print",ExpressionUUID->"395578c7-c033-4e0d-9eb5-530d10d41dbf"],
+Cell[54879, 1627, 339, 8, 24, "Print",ExpressionUUID->"22ab996d-a6c4-4650-8577-ddc38b5acda2"],
+Cell[55221, 1637, 329, 8, 24, "Print",ExpressionUUID->"7e68780c-4a6b-4eb3-95f0-5b5066b252bf"],
+Cell[55553, 1647, 341, 8, 24, "Print",ExpressionUUID->"0f92b212-d43a-4853-bad1-cef313a7bb29"],
+Cell[55897, 1657, 329, 8, 24, "Print",ExpressionUUID->"19fd5e05-7ff7-4218-92d6-fc55c72f449f"],
+Cell[56229, 1667, 341, 8, 24, "Print",ExpressionUUID->"44043362-49a1-4f1a-9ff2-6a8ec86e3df2"],
+Cell[56573, 1677, 329, 8, 24, "Print",ExpressionUUID->"5dfe1b3a-4b0f-467e-b772-fbdd6ff69180"],
+Cell[56905, 1687, 339, 8, 24, "Print",ExpressionUUID->"3c598313-5aec-46ea-a459-37994b58ad1b"],
+Cell[57247, 1697, 329, 8, 24, "Print",ExpressionUUID->"09ce12f4-4554-4ae9-81c5-e839702df8d5"],
+Cell[57579, 1707, 341, 8, 24, "Print",ExpressionUUID->"031e222c-2b5e-49d4-8d02-6203b27b8fc6"],
+Cell[57923, 1717, 329, 8, 24, "Print",ExpressionUUID->"0371cfc7-b42c-4383-bc79-f401697b3115"],
+Cell[58255, 1727, 339, 8, 24, "Print",ExpressionUUID->"dfb430b0-9572-4559-8df4-ec9ec2adb1b0"],
+Cell[58597, 1737, 329, 8, 24, "Print",ExpressionUUID->"78fcdc02-bf17-4573-81a8-7b7e18187389"],
+Cell[58929, 1747, 339, 8, 24, "Print",ExpressionUUID->"b542ede7-7f2e-42cc-95de-7c81cba91107"],
+Cell[59271, 1757, 329, 8, 24, "Print",ExpressionUUID->"67695136-a81e-4768-81c6-f25368657b20"],
+Cell[59603, 1767, 339, 8, 24, "Print",ExpressionUUID->"0876ea9d-5ff1-4a7c-8d71-27a51a24d266"],
+Cell[59945, 1777, 331, 8, 24, "Print",ExpressionUUID->"1ad089da-2624-445b-b453-83c1d1ec02ff"],
+Cell[60279, 1787, 339, 8, 24, "Print",ExpressionUUID->"1a6c8bfb-7989-4c97-aac8-baf3a2a1f0be"],
+Cell[60621, 1797, 328, 8, 24, "Print",ExpressionUUID->"de70e7fc-3cfc-4902-bc48-e399663604ad"],
+Cell[60952, 1807, 339, 8, 24, "Print",ExpressionUUID->"2893abcf-3a36-4c67-86d8-d786914b03f6"],
+Cell[61294, 1817, 331, 8, 24, "Print",ExpressionUUID->"4abe3ab3-3494-4a20-a8b2-2502254bfd1f"],
+Cell[61628, 1827, 339, 8, 24, "Print",ExpressionUUID->"4cd05233-23ca-474f-b4b5-2b524fcedf6a"],
+Cell[61970, 1837, 331, 8, 24, "Print",ExpressionUUID->"206d26a4-5eac-4ea3-b3a7-fbc1c3baec0b"],
+Cell[62304, 1847, 339, 8, 24, "Print",ExpressionUUID->"68dc5d82-f7cb-4874-b8be-6936cdd73df2"],
+Cell[62646, 1857, 331, 8, 24, "Print",ExpressionUUID->"fead1c9d-e84f-4003-b9eb-f23955abfcac"],
+Cell[62980, 1867, 339, 8, 24, "Print",ExpressionUUID->"a7c10d9a-72e5-4230-9830-0230c551040b"],
+Cell[63322, 1877, 328, 8, 24, "Print",ExpressionUUID->"92542334-d519-4e11-ae12-87a72aca4b7a"],
+Cell[63653, 1887, 339, 8, 24, "Print",ExpressionUUID->"aa81e50d-92c3-48e9-a27a-c05842d6fecc"],
+Cell[63995, 1897, 329, 8, 24, "Print",ExpressionUUID->"05abc417-8036-4616-8b1e-f6cc515fc088"],
+Cell[64327, 1907, 339, 8, 24, "Print",ExpressionUUID->"9cc5344e-fb0b-4ccc-a41e-ba3453732bca"],
+Cell[64669, 1917, 329, 8, 24, "Print",ExpressionUUID->"f66b5194-da8a-4a9d-95d5-7e2f080511aa"],
+Cell[65001, 1927, 339, 8, 24, "Print",ExpressionUUID->"d9409368-6ba5-43c1-915d-8b1072c29b86"],
+Cell[65343, 1937, 329, 8, 24, "Print",ExpressionUUID->"22f0d880-b2a3-46cd-a8d7-b822ada73985"],
+Cell[65675, 1947, 339, 8, 24, "Print",ExpressionUUID->"b30a37de-6fde-45ec-83c8-2a7a6fdb1660"],
+Cell[66017, 1957, 329, 8, 24, "Print",ExpressionUUID->"b3ab8424-b330-4ea4-9836-645d388919f3"],
+Cell[66349, 1967, 339, 8, 24, "Print",ExpressionUUID->"06ba3a9a-30e4-4627-bff5-182ac69ea407"],
+Cell[66691, 1977, 329, 8, 24, "Print",ExpressionUUID->"c2ada181-57ff-4413-988d-907d6dbe3a78"],
+Cell[67023, 1987, 341, 8, 24, "Print",ExpressionUUID->"ed6064e8-8d7a-40ff-a4b1-975d827767e5"],
+Cell[67367, 1997, 329, 8, 24, "Print",ExpressionUUID->"c027486a-c13d-43ff-9551-7be4f874247c"],
+Cell[67699, 2007, 339, 8, 24, "Print",ExpressionUUID->"3d8c1334-df4d-47ee-bbd5-46a8f84573d9"],
+Cell[68041, 2017, 329, 8, 24, "Print",ExpressionUUID->"9536feb4-9a85-4b07-be9a-082eca77013d"],
+Cell[68373, 2027, 339, 8, 24, "Print",ExpressionUUID->"3fc15e59-235d-490a-8014-42bd4c3ca0fc"],
+Cell[68715, 2037, 329, 8, 24, "Print",ExpressionUUID->"1c7314f6-424a-4e3e-b8ca-307ee5416fc7"],
+Cell[69047, 2047, 339, 8, 24, "Print",ExpressionUUID->"623b25e9-440c-4cbc-9f7c-45fce9a46ab7"],
+Cell[69389, 2057, 331, 8, 24, "Print",ExpressionUUID->"ac75e6b6-c617-4b89-8736-471460b04246"],
+Cell[69723, 2067, 339, 8, 24, "Print",ExpressionUUID->"e67744db-db8c-428c-aa48-d4e4190ade16"],
+Cell[70065, 2077, 331, 8, 24, "Print",ExpressionUUID->"2a2b7b29-859c-4a8e-91db-c9bd2b04fdd5"],
+Cell[70399, 2087, 339, 8, 24, "Print",ExpressionUUID->"975d34a6-565c-4003-a106-00685e1a6d1b"],
+Cell[70741, 2097, 329, 8, 24, "Print",ExpressionUUID->"c8ce693f-9066-4fa6-9cef-09d8d1bcf6e4"],
+Cell[71073, 2107, 339, 8, 24, "Print",ExpressionUUID->"195c1072-e06f-45b9-aeca-90f53a019e6a"],
+Cell[71415, 2117, 329, 8, 24, "Print",ExpressionUUID->"ff98ce13-c309-4dbb-ab2b-2a0b348ab5e7"],
+Cell[71747, 2127, 339, 8, 24, "Print",ExpressionUUID->"5b457c51-3ab1-4658-b448-9eed7986b2d9"],
+Cell[72089, 2137, 329, 8, 24, "Print",ExpressionUUID->"3127b42c-ec8b-4f1a-b60f-3ed522350e75"],
+Cell[72421, 2147, 339, 8, 24, "Print",ExpressionUUID->"127a8f83-c94d-4213-b005-0e8f30fdeebb"],
+Cell[72763, 2157, 328, 8, 24, "Print",ExpressionUUID->"cb76707b-e08d-48eb-a9a9-129f7b11e568"],
+Cell[73094, 2167, 339, 8, 24, "Print",ExpressionUUID->"e29bcdc6-1e3a-47b1-8e88-7ce1c07bc4f4"],
+Cell[73436, 2177, 329, 8, 24, "Print",ExpressionUUID->"93a0921f-e095-4ae0-80b8-d79cf2aeb3ad"],
+Cell[73768, 2187, 339, 8, 24, "Print",ExpressionUUID->"a2aa7fbf-3a64-4c3f-a082-433d784687a7"],
+Cell[74110, 2197, 331, 8, 24, "Print",ExpressionUUID->"574c582f-2c34-4254-b60b-9e01cf6434e8"],
+Cell[74444, 2207, 341, 8, 24, "Print",ExpressionUUID->"51f8a655-56cd-4718-872b-d791fea56385"],
+Cell[74788, 2217, 331, 8, 24, "Print",ExpressionUUID->"38a8514a-4fde-40fb-97a0-9d28ce419f99"],
+Cell[75122, 2227, 339, 8, 24, "Print",ExpressionUUID->"74f807a2-f962-422f-a834-6511983e606a"],
+Cell[75464, 2237, 329, 8, 24, "Print",ExpressionUUID->"cf0da43a-95c1-4eca-8198-988b9145b12e"],
+Cell[75796, 2247, 341, 8, 24, "Print",ExpressionUUID->"299d04e1-bd17-4eb2-8ff8-aa60c2e46d97"],
+Cell[76140, 2257, 331, 8, 24, "Print",ExpressionUUID->"d0e71f24-4574-4b1d-bf62-64cfa26dabbb"],
+Cell[76474, 2267, 341, 8, 24, "Print",ExpressionUUID->"468886af-92ba-4774-9ed0-ff7671ef2220"],
+Cell[76818, 2277, 331, 8, 24, "Print",ExpressionUUID->"f5bf0ff7-5268-473e-83c5-0f6062135d43"],
+Cell[77152, 2287, 339, 8, 24, "Print",ExpressionUUID->"f09d4dd4-066d-4659-a686-f9b5d7354b15"],
+Cell[77494, 2297, 329, 8, 24, "Print",ExpressionUUID->"59732034-59a5-4324-8116-a7b9eb860e4b"],
+Cell[77826, 2307, 338, 8, 24, "Print",ExpressionUUID->"d65bdc8a-4e66-4a65-937d-66d33c3b6b11"],
+Cell[78167, 2317, 331, 8, 24, "Print",ExpressionUUID->"c769fdbd-2702-4242-923a-b268cba29cd7"],
+Cell[78501, 2327, 339, 8, 24, "Print",ExpressionUUID->"bf89170b-6236-43a8-9758-ee53719740c9"],
+Cell[78843, 2337, 331, 8, 24, "Print",ExpressionUUID->"4eabfc25-d615-4952-b1b4-c6d9850e9292"],
+Cell[79177, 2347, 339, 8, 24, "Print",ExpressionUUID->"b98e29ea-bc37-4239-b2d5-982ed69f22aa"],
+Cell[79519, 2357, 329, 8, 24, "Print",ExpressionUUID->"325c76d4-b702-4a10-98d0-36fd244a98da"],
+Cell[79851, 2367, 339, 8, 24, "Print",ExpressionUUID->"6072edef-8db5-43a4-9e6a-8d9f8ea03957"],
+Cell[80193, 2377, 329, 8, 24, "Print",ExpressionUUID->"959a990c-ec09-4146-abdd-5be6acdc4eb1"],
+Cell[80525, 2387, 339, 8, 24, "Print",ExpressionUUID->"8251e0aa-2733-4955-abcd-ec3c65491a27"],
+Cell[80867, 2397, 329, 8, 24, "Print",ExpressionUUID->"b23c09bf-5bc0-493b-80a7-d5a89fd7fdbe"],
+Cell[81199, 2407, 339, 8, 24, "Print",ExpressionUUID->"a8e06848-37f6-415c-addf-490d662e6dc5"],
+Cell[81541, 2417, 329, 8, 24, "Print",ExpressionUUID->"e47b9812-a11b-43ff-8ec6-c79382f27477"],
+Cell[81873, 2427, 341, 8, 24, "Print",ExpressionUUID->"83c6be6c-6af3-46ac-9625-f6ebf3935b11"],
+Cell[82217, 2437, 331, 8, 24, "Print",ExpressionUUID->"d747fce1-1060-416a-ba4a-8bd141055b9b"],
+Cell[82551, 2447, 339, 8, 24, "Print",ExpressionUUID->"3c14eb14-de9b-4c8e-bdee-826d22716c95"],
+Cell[82893, 2457, 331, 8, 24, "Print",ExpressionUUID->"969f62cf-da30-4a5f-b166-3e0630245f3c"],
+Cell[83227, 2467, 339, 8, 24, "Print",ExpressionUUID->"12fcbbf8-7194-4bab-a5ed-0349718c138b"],
+Cell[83569, 2477, 331, 8, 24, "Print",ExpressionUUID->"516cdeed-992d-4fb6-9810-615943a9d7ca"],
+Cell[83903, 2487, 339, 8, 24, "Print",ExpressionUUID->"4326aaff-4478-4768-919e-27519b48d11c"],
+Cell[84245, 2497, 329, 8, 24, "Print",ExpressionUUID->"8f3bb286-4833-4fde-a6a8-610a9fb8ca5a"],
+Cell[84577, 2507, 341, 8, 24, "Print",ExpressionUUID->"76e01069-1372-442c-abe3-822bb494b0d8"],
+Cell[84921, 2517, 329, 8, 24, "Print",ExpressionUUID->"5109c2be-3cbb-4c16-8077-cc21e54502c3"],
+Cell[85253, 2527, 339, 8, 24, "Print",ExpressionUUID->"b2f77906-8682-4615-8a40-59117e23eba1"],
+Cell[85595, 2537, 329, 8, 24, "Print",ExpressionUUID->"00d70f69-58bc-4426-98be-6d45cac6d84b"],
+Cell[85927, 2547, 339, 8, 24, "Print",ExpressionUUID->"8eb4c0fb-814b-4845-9ea9-ae7768e394c5"],
+Cell[86269, 2557, 328, 8, 24, "Print",ExpressionUUID->"115e8137-5d9a-4dbf-a928-667d62fcbca7"],
+Cell[86600, 2567, 339, 8, 24, "Print",ExpressionUUID->"0ef10f07-a115-47f2-b918-a3b8a7743e03"],
+Cell[86942, 2577, 329, 8, 24, "Print",ExpressionUUID->"5746b078-6b67-4bba-a7d3-05354b129931"],
+Cell[87274, 2587, 339, 8, 24, "Print",ExpressionUUID->"ad2f8c8f-0d3b-4788-a476-1a819cdec235"],
+Cell[87616, 2597, 331, 8, 24, "Print",ExpressionUUID->"a19ad5d2-fed4-4b9d-9a07-f937983d134c"],
+Cell[87950, 2607, 341, 8, 24, "Print",ExpressionUUID->"ce0d921e-6245-4b8d-96cc-cacab35151fd"],
+Cell[88294, 2617, 329, 8, 24, "Print",ExpressionUUID->"fdbf89ad-fb77-46b2-a7ce-53514422bc8a"],
+Cell[88626, 2627, 339, 8, 24, "Print",ExpressionUUID->"99b013de-1530-4cda-abc6-97ebcb835bb1"],
+Cell[88968, 2637, 329, 8, 24, "Print",ExpressionUUID->"9b1867e1-b19e-4a2e-a2f2-e93a0b417561"],
+Cell[89300, 2647, 339, 8, 24, "Print",ExpressionUUID->"7ec76319-3b7f-4381-b092-5337eed952a4"],
+Cell[89642, 2657, 329, 8, 24, "Print",ExpressionUUID->"64cc395e-75ac-4b41-ba2f-7fbb323d7d19"],
+Cell[89974, 2667, 339, 8, 24, "Print",ExpressionUUID->"65e5caa7-81b3-4e05-b1c1-468086a4e56d"],
+Cell[90316, 2677, 329, 8, 24, "Print",ExpressionUUID->"7906e663-ff41-4ddd-92cc-5aaad4d98bd7"],
+Cell[90648, 2687, 341, 8, 24, "Print",ExpressionUUID->"ab6e32bf-1273-41d5-bbd6-6d5d6696e47d"],
+Cell[90992, 2697, 331, 8, 24, "Print",ExpressionUUID->"9359d9b3-4af5-401d-b41c-5eaafe320dbe"],
+Cell[91326, 2707, 339, 8, 24, "Print",ExpressionUUID->"ed20dadf-69d9-4f4e-842e-50629974aec1"],
+Cell[91668, 2717, 331, 8, 24, "Print",ExpressionUUID->"f04f374f-1d53-4356-912f-37f16b308695"],
+Cell[92002, 2727, 339, 8, 24, "Print",ExpressionUUID->"2dd85e03-133d-4bb8-96da-b375b92dd229"],
+Cell[92344, 2737, 329, 8, 24, "Print",ExpressionUUID->"2444d331-0079-4b27-9baa-1fe9c81fd457"],
+Cell[92676, 2747, 339, 8, 24, "Print",ExpressionUUID->"d0c5bf26-cef5-425f-a18d-bc64941f6633"],
+Cell[93018, 2757, 329, 8, 24, "Print",ExpressionUUID->"ccbc141b-929a-4882-9b2a-4ac32240a163"],
+Cell[93350, 2767, 338, 8, 24, "Print",ExpressionUUID->"281ec8a5-42bc-4679-8dd0-6ec97cfa9c76"],
+Cell[93691, 2777, 329, 8, 24, "Print",ExpressionUUID->"d1bca91c-2ed8-4ea8-8185-46e657233a5e"],
+Cell[94023, 2787, 339, 8, 24, "Print",ExpressionUUID->"c8ac2fca-6898-4406-954d-c1af80aa5370"],
+Cell[94365, 2797, 329, 8, 24, "Print",ExpressionUUID->"fcc31367-7d78-4575-a3e0-3f0d5bf60f4f"],
+Cell[94697, 2807, 338, 8, 24, "Print",ExpressionUUID->"b5238045-14e3-46fc-a1fd-c5c472015870"],
+Cell[95038, 2817, 331, 8, 24, "Print",ExpressionUUID->"3d89d737-1661-4dc6-84f6-7f2f0e008f75"],
+Cell[95372, 2827, 339, 8, 24, "Print",ExpressionUUID->"722073ad-ae13-4057-b81d-85b329a9184f"],
+Cell[95714, 2837, 329, 8, 24, "Print",ExpressionUUID->"d4eaca3f-90ab-408c-af62-604d65642e63"],
+Cell[96046, 2847, 338, 8, 24, "Print",ExpressionUUID->"63e5c86b-9cb8-4e10-a8c9-549218bb3fcf"],
+Cell[96387, 2857, 329, 8, 24, "Print",ExpressionUUID->"69780de5-26a5-47fa-a939-57d014d3bd02"],
+Cell[96719, 2867, 341, 8, 24, "Print",ExpressionUUID->"5ecdab9f-ede6-49c0-9aa3-2f0fce7134d3"],
+Cell[97063, 2877, 329, 8, 24, "Print",ExpressionUUID->"ab251405-b6b7-4279-9e12-752f2ffb2780"],
+Cell[97395, 2887, 339, 8, 24, "Print",ExpressionUUID->"dac74587-7bed-4680-8624-337d596e23dd"],
+Cell[97737, 2897, 329, 8, 24, "Print",ExpressionUUID->"eadaf847-269b-4d86-98f6-759047684cff"],
+Cell[98069, 2907, 339, 8, 24, "Print",ExpressionUUID->"2618b9c0-9566-426f-aaf2-652f423b8e82"],
+Cell[98411, 2917, 331, 8, 24, "Print",ExpressionUUID->"330316d0-7725-4de8-98a8-ffb70b943dab"],
+Cell[98745, 2927, 339, 8, 24, "Print",ExpressionUUID->"f48c8666-b4c2-4f31-b637-63b599e0e183"],
+Cell[99087, 2937, 331, 8, 24, "Print",ExpressionUUID->"6416cf29-a759-4d17-87a3-0ec666364b1e"],
+Cell[99421, 2947, 339, 8, 24, "Print",ExpressionUUID->"0e8f4586-7e24-4260-a519-837ed9ca996b"],
+Cell[99763, 2957, 329, 8, 24, "Print",ExpressionUUID->"5fdfe9da-f7fb-41f6-a7c2-1b50789ab9e7"],
+Cell[100095, 2967, 339, 8, 24, "Print",ExpressionUUID->"2a4ecaf7-fbcc-4893-810e-7f67d1270ebd"],
+Cell[100437, 2977, 328, 8, 24, "Print",ExpressionUUID->"e0aadfda-9999-4207-a335-d214a14685b1"],
+Cell[100768, 2987, 341, 8, 24, "Print",ExpressionUUID->"7f35a965-d631-49a2-9515-fec086adfb21"],
+Cell[101112, 2997, 328, 8, 24, "Print",ExpressionUUID->"5a19ab83-5d9c-497d-846c-c4eb92386fae"],
+Cell[101443, 3007, 339, 8, 24, "Print",ExpressionUUID->"e806bc61-4d7f-4960-8767-1e3484c14f16"],
+Cell[101785, 3017, 329, 8, 24, "Print",ExpressionUUID->"dc2dda14-cd9e-4b04-940c-46e3f6f41b17"],
+Cell[102117, 3027, 339, 8, 24, "Print",ExpressionUUID->"0becb607-64a5-4ff5-bf70-60e1c2e405c3"],
+Cell[102459, 3037, 329, 8, 24, "Print",ExpressionUUID->"0d88fb20-dc78-4cb9-aa51-e80db9104150"],
+Cell[102791, 3047, 339, 8, 24, "Print",ExpressionUUID->"04960559-4730-4969-a03e-6b87db581016"],
+Cell[103133, 3057, 329, 8, 24, "Print",ExpressionUUID->"74353c8a-9338-4423-9aa0-b7525a838740"],
+Cell[103465, 3067, 339, 8, 24, "Print",ExpressionUUID->"43863c42-3079-46eb-9440-bd77ca7ebcf8"],
+Cell[103807, 3077, 329, 8, 24, "Print",ExpressionUUID->"a4e6c2ae-98a1-4f6d-a3d2-4ded35557c0c"],
+Cell[104139, 3087, 339, 8, 24, "Print",ExpressionUUID->"aa66b49c-c362-4796-bcf2-30e7a5b84006"],
+Cell[104481, 3097, 329, 8, 24, "Print",ExpressionUUID->"df1f610d-49ef-4df6-be3b-6da875ea6c13"],
+Cell[104813, 3107, 341, 8, 24, "Print",ExpressionUUID->"a29163b9-8546-4eec-acfd-566d30fae172"],
+Cell[105157, 3117, 329, 8, 24, "Print",ExpressionUUID->"f9192ac6-8ff3-4dce-a594-0a891f993eca"],
+Cell[105489, 3127, 339, 8, 24, "Print",ExpressionUUID->"6681b788-439f-4469-bcad-308c6265e95b"],
+Cell[105831, 3137, 329, 8, 24, "Print",ExpressionUUID->"e8c5a984-78db-4f83-8f9e-dc9a8070d97f"],
+Cell[106163, 3147, 339, 8, 24, "Print",ExpressionUUID->"8a5b63c8-32b3-447b-ac49-e3d6ccfd5741"],
+Cell[106505, 3157, 329, 8, 24, "Print",ExpressionUUID->"fccbf21c-ba63-4c9a-af89-ea6bd3a01a63"],
+Cell[106837, 3167, 339, 8, 24, "Print",ExpressionUUID->"23abaaf6-2c7b-4c09-9eca-f38e74bfe7b0"],
+Cell[107179, 3177, 329, 8, 24, "Print",ExpressionUUID->"789f564b-e97a-4939-bb88-d21dd9057ced"],
+Cell[107511, 3187, 339, 8, 24, "Print",ExpressionUUID->"4d6624cb-f6eb-49b6-bec8-8ff3c8a9d6be"],
+Cell[107853, 3197, 331, 8, 24, "Print",ExpressionUUID->"4e6f96f4-9098-487f-a602-aa25e703c447"],
+Cell[108187, 3207, 341, 8, 24, "Print",ExpressionUUID->"d51e5f83-1bb8-4c5a-a761-819d8e39ca21"],
+Cell[108531, 3217, 329, 8, 24, "Print",ExpressionUUID->"b64f0916-2927-462d-91ed-31f3bc19215d"],
+Cell[108863, 3227, 341, 8, 24, "Print",ExpressionUUID->"d2e292fd-44cc-4cd4-b45b-8ce761ca30a3"],
+Cell[109207, 3237, 329, 8, 24, "Print",ExpressionUUID->"c3a73744-bae4-47eb-98a8-83c566db58c9"],
+Cell[109539, 3247, 339, 8, 24, "Print",ExpressionUUID->"198f2e31-286e-44d4-9a3d-4dbae226e1cd"],
+Cell[109881, 3257, 331, 8, 24, "Print",ExpressionUUID->"2f6347b3-dcb0-4d9b-a86d-8999c2cadf8c"],
+Cell[110215, 3267, 339, 8, 24, "Print",ExpressionUUID->"b4fbb7d6-a41d-4c4d-80a2-465e7b7b5b58"],
+Cell[110557, 3277, 329, 8, 24, "Print",ExpressionUUID->"08359622-1896-4721-a960-c76f2de0419c"]
+}, Open  ]],
+Cell[110901, 3288, 158, 2, 34, "Output",ExpressionUUID->"934ca159-9312-40ce-9a55-637b1339773f"],
+Cell[111062, 3292, 345, 8, 24, "Print",ExpressionUUID->"03e2af9a-af11-48b6-ae5e-b4e77ce047ca"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

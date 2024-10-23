@@ -1,0 +1,221 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7893,        211]
+NotebookOptionsPosition[      7325,        193]
+NotebookOutlinePosition[      7719,        209]
+CellTagsIndexPosition[      7676,        206]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData["$Failed"], "Input",ExpressionUUID->"5679fc3b-ec1e-4baa-a2fa-c73e86be56be"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"f1", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}], " ", 
+    RowBox[{"Tan", "[", 
+     RowBox[{"x", "/", "2"}], "]"}]}], "+", "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f2", "[", 
+    RowBox[{"x_", ",", "a_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"a", " ", 
+     RowBox[{"Tan", "[", 
+      RowBox[{"a", " ", "x"}], "]"}]}], "+", "2"}]}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"interval", "=", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "Pi"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"aInit", "=", 
+   RowBox[{
+    RowBox[{"-", "1"}], "/", "2"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f1Values", ",", "f2Values", ",", "inequalityRegion"}], "}"}], 
+     ",", 
+     RowBox[{
+      RowBox[{"f1Values", "=", 
+       RowBox[{"f1", "[", "x", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"f2Values", "=", 
+       RowBox[{"f2", "[", 
+        RowBox[{"x", ",", "a"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"inequalityRegion", "=", 
+       RowBox[{"RegionPlot", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{
+            RowBox[{"f1", "[", "x", "]"}], "-", 
+            RowBox[{"f2", "[", 
+             RowBox[{"x", ",", "a"}], "]"}]}], "]"}], ">", 
+          RowBox[{"10", "^", 
+           RowBox[{"-", "6"}]}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "Pi"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"y", ",", 
+           RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+         RowBox[{"PlotStyle", "->", 
+          RowBox[{"Directive", "[", 
+           RowBox[{
+            RowBox[{"Opacity", "[", "0.3", "]"}], ",", "Green"}], "]"}]}], 
+         ",", 
+         RowBox[{"BoundaryStyle", "->", "None"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Plot", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"f1", "[", "x", "]"}], ",", 
+            RowBox[{"f2", "[", 
+             RowBox[{"x", ",", "a"}], "]"}]}], "}"}], ",", "interval", ",", 
+          RowBox[{"PlotRange", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+          RowBox[{"PlotStyle", "->", 
+           RowBox[{"{", 
+            RowBox[{"Blue", ",", "Red"}], "}"}]}], ",", 
+          RowBox[{"PlotLegends", "->", 
+           RowBox[{"Placed", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<f1(x) = -\[Sqrt]3 tan(x/2) + 1\>\"", ",", 
+               "\"\<f2(x) = a tan(ax) + 2\>\""}], "}"}], ",", "Above"}], 
+            "]"}]}], ",", 
+          RowBox[{"AxesLabel", "->", 
+           RowBox[{"{", 
+            RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "}"}]}], ",", 
+          RowBox[{"PlotLabel", "->", 
+           RowBox[{"\"\<Checking Inequality in [0, Pi] for a = \>\"", "<>", 
+            RowBox[{"ToString", "[", "a", "]"}]}]}], ",", 
+          RowBox[{"GridLines", "->", "Automatic"}], ",", 
+          RowBox[{"Exclusions", "->", "None"}]}], "]"}], ",", 
+        "inequalityRegion"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"(*", 
+    RowBox[{"Slider", " ", 
+     RowBox[{"for", "'"}], 
+     RowBox[{"a", "'"}]}], "*)"}], 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "aInit", ",", "\"\<a\>\""}], "}"}], ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.934340939620558*^9, 3.93434094069977*^9}, {
+  3.934341101276185*^9, 
+  3.934341117630369*^9}},ExpressionUUID->"615d115a-599c-4d20-8435-\
+b855d3062af1"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = -0.55, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], 
+       Rational[-1, 2], "a"}, -1, 1}}, Typeset`size$$ = {714., {233., 274.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`a$$ = Rational[-1, 2]}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`f1Values$, $CellContext`f2Values$, \
+$CellContext`inequalityRegion$}, $CellContext`f1Values$ = \
+$CellContext`f1[$CellContext`x]; $CellContext`f2Values$ = \
+$CellContext`f2[$CellContext`x, $CellContext`a$$]; \
+$CellContext`inequalityRegion$ = 
+         RegionPlot[
+          Abs[$CellContext`f1[$CellContext`x] - \
+$CellContext`f2[$CellContext`x, $CellContext`a$$]] > 
+           10^(-6), {$CellContext`x, 0, Pi}, {$CellContext`y, -10, 10}, 
+           PlotStyle -> Directive[
+             Opacity[0.3], Green], BoundaryStyle -> None]; Show[
+          Plot[{
+            $CellContext`f1[$CellContext`x], 
+            $CellContext`f2[$CellContext`x, $CellContext`a$$]}, \
+$CellContext`interval, PlotRange -> {-10, 10}, PlotStyle -> {Blue, Red}, 
+           PlotLegends -> 
+           Placed[{"f1(x) = -\[Sqrt]3 tan(x/2) + 1", "f2(x) = a tan(ax) + 2"},
+              Above], AxesLabel -> {"x", "y"}, PlotLabel -> 
+           StringJoin["Checking Inequality in [0, Pi] for a = ", 
+             ToString[$CellContext`a$$]], GridLines -> Automatic, Exclusions -> 
+           None], $CellContext`inequalityRegion$]], 
+      "Specifications" :> {{{$CellContext`a$$, 
+          Rational[-1, 2], "a"}, -1, 1, Appearance -> "Labeled"}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{759., {296., 302.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.934340941330496*^9},
+ CellLabel->"Out[36]=",ExpressionUUID->"0631087e-5fb0-442a-a664-71b46590ca39"]
+}, Open  ]]
+},
+WindowSize->{1259, 1085},
+WindowMargins->{{20, Automatic}, {Automatic, 44}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"63a65e46-cd25-434a-b717-59ea0e357bbc"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 88, 0, 30, "Input",ExpressionUUID->"5679fc3b-ec1e-4baa-a2fa-c73e86be56be"],
+Cell[CellGroupData[{
+Cell[671, 24, 3865, 109, 320, "Input",ExpressionUUID->"615d115a-599c-4d20-8435-b855d3062af1"],
+Cell[4539, 135, 2770, 55, 617, "Output",ExpressionUUID->"0631087e-5fb0-442a-a664-71b46590ca39"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

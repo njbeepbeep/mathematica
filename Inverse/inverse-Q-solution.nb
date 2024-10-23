@@ -1,0 +1,107 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3264,         97]
+NotebookOptionsPosition[      2697,         79]
+NotebookOutlinePosition[      3090,         95]
+CellTagsIndexPosition[      3047,         92]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetSystemOptions", "[", 
+    RowBox[{"\"\<SimplificationOptions\>\"", "->", 
+     RowBox[{"\"\<AutosimplifyTwoArgumentLog\>\"", "->", "False"}]}], "]"}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"0.2", "*", 
+     RowBox[{"(", 
+      RowBox[{"2", "^", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "y"}], "/", "8"}], ")"}]}], ")"}]}], "==", "t"}], ",", 
+   "y"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.930706354322167*^9, 3.930706354324132*^9}, {
+   3.930706427871142*^9, 3.930706430721798*^9}, {3.930706759102068*^9, 
+   3.930706816348209*^9}, {3.930706851586145*^9, 3.930706975638259*^9}, 
+   3.930707050417625*^9, {3.9307071050038757`*^9, 3.930707107105104*^9}, {
+   3.930707163266029*^9, 3.9307072053422956`*^9}, {3.930707329371498*^9, 
+   3.9307073595999126`*^9}, {3.930707468711152*^9, 3.930707476346726*^9}},
+ CellLabel->"In[59]:=",ExpressionUUID->"8e6e2408-0994-482b-8336-e43fd2415692"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Solve", "ifun", 
+   "\"Inverse functions are being used by \
+\\!\\(\\*RowBox[{\\\"Solve\\\"}]\\), so some solutions may not be found; use \
+Reduce for complete solution information.\"", 2, 60, 31, 26203808503067017573,
+    "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.930707180240068*^9, 3.930707223347398*^9, {3.930707331954555*^9, 
+   3.930707360551386*^9}},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"d70f15dd-6831-4443-8f1a-b37f87144276"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"y", "\[Rule]", 
+    RowBox[{
+     RowBox[{"-", "8.`"}], " ", 
+     RowBox[{"Log", "[", 
+      RowBox[{"2.`15.954589770191005", ",", 
+       RowBox[{
+       "4.99999999999999972244424384371088030153`15.954589770191005", " ", 
+        "t"}]}], "]"}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.930707180245221*^9, 3.930707223352995*^9, {3.930707331961607*^9, 
+   3.9307073605590353`*^9}},
+ CellLabel->"Out[60]=",ExpressionUUID->"0dac2d74-1e46-41dc-90dc-0b2abc7d48e5"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, 670}, {98, Automatic}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"403ffeca-c03e-4a0b-8fa4-e6b0b02d8723"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1036, 23, 73, "Input",ExpressionUUID->"8e6e2408-0994-482b-8336-e43fd2415692"],
+Cell[1619, 47, 527, 13, 46, "Message",ExpressionUUID->"d70f15dd-6831-4443-8f1a-b37f87144276"],
+Cell[2149, 62, 532, 14, 34, "Output",ExpressionUUID->"0dac2d74-1e46-41dc-90dc-0b2abc7d48e5"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

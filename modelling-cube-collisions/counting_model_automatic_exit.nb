@@ -1,0 +1,207 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6917,        197]
+NotebookOptionsPosition[      6444,        180]
+NotebookOutlinePosition[      6837,        196]
+CellTagsIndexPosition[      6794,        193]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Initialize", " ", "parameters"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"m1", "=", "1"}], ";", 
+    RowBox[{"(*", 
+     RowBox[{"Mass", " ", "of", " ", "the", " ", "smaller", " ", "block"}], 
+     "*)"}], 
+    RowBox[{"m2", "=", 
+     RowBox[{"100", "^", "3"}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Mass", " ", "of", " ", "the", " ", "larger", " ", "block", " ", 
+      RowBox[{"(", 
+       RowBox[{
+       "adjust", " ", "for", " ", "more", " ", "digits", " ", "of", " ", 
+        "Pi"}], ")"}]}], "*)"}], 
+    RowBox[{"v1", "=", "0"}], ";", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Initial", " ", "velocity", " ", "of", " ", "the", " ", "smaller", " ", 
+      "block", " ", 
+      RowBox[{"(", 
+       RowBox[{"starting", " ", "at", " ", "rest"}], ")"}]}], "*)"}], 
+    RowBox[{"v2", "=", 
+     RowBox[{"-", "1"}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Initial", " ", "velocity", " ", "of", " ", "the", " ", "larger", " ", 
+      "block", " ", 
+      RowBox[{"(", 
+       RowBox[{
+       "moving", " ", "towards", " ", "the", " ", "smaller", " ", "block"}], 
+       ")"}]}], "*)"}], 
+    RowBox[{"collisionCount", "=", "0"}], ";", 
+    RowBox[{"(*", 
+     RowBox[{"Initialize", " ", "the", " ", "collision", " ", "counter"}], 
+     "*)"}], 
+    RowBox[{"maxIterations", "=", 
+     RowBox[{"10", "^", "6"}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Set", " ", "a", " ", "maximum", " ", "number", " ", "of", " ", 
+      "iterations", " ", "to", " ", "prevent", " ", "infinite", " ", 
+      "loops"}], "*)"}], 
+    RowBox[{"iteration", "=", "0"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"threshold", "=", 
+     RowBox[{"10", "^", 
+      RowBox[{"-", "10"}]}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Set", " ", "a", " ", "small", " ", "threshold", " ", "for", " ", 
+      "velocity", " ", "convergence"}], "*)"}], 
+    RowBox[{"(*", 
+     RowBox[{
+     "Time", " ", "evolution", " ", "loop", " ", "with", " ", "a", " ", 
+      "maximum", " ", "iteration", " ", "limit"}], "*)"}], 
+    RowBox[{"While", "[", 
+     RowBox[{
+      RowBox[{"iteration", "<", "maxIterations"}], ",", 
+      RowBox[{
+       RowBox[{"iteration", "++"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Wall", " ", "collision", " ", "for", " ", "smaller", " ", "block"}], 
+        "*)"}], 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"v1", "<", "0"}], ",", 
+         RowBox[{
+          RowBox[{"v1", "=", 
+           RowBox[{"-", "v1"}]}], ";", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Reverse", " ", "direction", " ", "after", " ", "hitting", " ", 
+            "the", " ", "wall"}], "*)"}], 
+          RowBox[{"collisionCount", "++"}], ";"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Block", " ", "collision"}], "*)"}], 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"v1", ">", "v2"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+          "Update", " ", "velocities", " ", "after", " ", "elastic", " ", 
+           "collision"}], "*)"}], 
+         RowBox[{
+          RowBox[{"newV1", "=", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"m1", "-", "m2"}], ")"}], " ", "v1"}], "+", 
+              RowBox[{"2", " ", "m2", " ", "v2"}]}], ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"m1", "+", "m2"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"newV2", "=", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"m2", "-", "m1"}], ")"}], " ", "v2"}], "+", 
+              RowBox[{"2", " ", "m1", " ", "v1"}]}], ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"m1", "+", "m2"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+            "Check", " ", "if", " ", "velocities", " ", "are", " ", "very", 
+             " ", "close", " ", "to", " ", "each", " ", "other"}], ",", 
+            RowBox[{"and", " ", "stop", " ", "if", " ", "so"}]}], "*)"}], 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Abs", 
+              RowBox[{"(", 
+               RowBox[{"v1", "-", "v2"}], ")"}]}], "<", "threshold"}], ",", 
+            RowBox[{
+             RowBox[{"Break", "[", "]"}], ";"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"v1", "=", "newV1"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"v2", "=", "newV2"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{"Increment", " ", "collision", " ", "count"}], "*)"}], 
+          RowBox[{"collisionCount", "++"}], ";"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Safety", " ", "check", " ", "for", " ", "stopping", " ", "early", 
+         " ", "after", " ", "a", " ", "large", " ", "number", " ", "of", " ", 
+         "collisions"}], "*)"}], 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"collisionCount", ">=", "3141"}], ",", 
+         RowBox[{"Break", "[", "]"}]}], "]"}], ";"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Output", " ", "the", " ", "final", " ", "collision", " ", "count"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "collisionCount", "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{3.9381294889722548`*^9},
+ CellLabel->"In[83]:=",ExpressionUUID->"2e6ae304-fb11-4384-b095-b623a32b7f3d"],
+
+Cell[BoxData["3141"], "Print",
+ CellChangeTimes->{3.938129630915763*^9},
+ CellLabel->
+  "During evaluation of \
+In[83]:=",ExpressionUUID->"0c3aa630-d4a7-4c87-b5d3-9a4d72b46aeb"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{44, Automatic}, {Automatic, 104}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"02a5e9de-3aa0-4266-83e6-e81936618b0e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 5668, 149, 577, "Input",ExpressionUUID->"2e6ae304-fb11-4384-b095-b623a32b7f3d"],
+Cell[6251, 173, 177, 4, 24, "Print",ExpressionUUID->"0c3aa630-d4a7-4c87-b5d3-9a4d72b46aeb"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
